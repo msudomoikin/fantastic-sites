@@ -1,37 +1,38 @@
 
 
-let maxHeight = 9
+createTree();
 
-createTreeSegment(1, '*', 9)
-createTreeSegment(3, '^', 9)
-createTreeSegment(5, '^', 9)
-createTreeSegment(9, '^', 9)
+function createTree() {
+    const maxHeight = 9
+    createTreeSegment(1, '*', maxHeight)
+    createTreeSegment(3, '^', maxHeight)
+    createTreeSegment(5, '^', maxHeight)
+    createTreeSegment(9, '^', maxHeight)
+}
 
 
 function createTreeSegment(height, symbol = '^', maxHeight) {
-
-
     for (let index = 0; index < height; index++) {
         let segment = '';
         let canHangToy = false;
 
-        segment += '/'.repeat(maxHeight - index - 1)
+        segment += ' '.repeat(maxHeight - index - 1)
 
         let symbolCount = 1 + index * 2;
 
-        symbolCount > 2 ? canHangToy = true : canHangToy = false;
+        symbolCount > 3 ? canHangToy = true : canHangToy = false;
 
         for (let j = 0; j < symbolCount; j++) {
             const randomNum = getRandomInt(symbolCount)
             if (randomNum === index && canHangToy) {
-                segment += '0';
-                canHangToy = false;
+                segment += 'o';
+                canHangToy = false; // only one toy
             } else {
                 segment += symbol;
             }
         }
 
-        segment += '\\'.repeat(maxHeight - index - 1);
+        // segment += '\\'.repeat(maxHeight - index - 1);
 
         console.log(segment);
     }
