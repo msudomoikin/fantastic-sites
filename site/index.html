@@ -1,0 +1,470 @@
+<!doctype html>
+<html data-n-head-ssr lang="ru">
+   <head>
+      <meta>
+      <title>JavaScript по-дизайнерски | Сетка</title>
+	  <link href="style.css" rel="stylesheet">
+     <link href="project.css" rel="stylesheet">
+   </head>
+
+   <body class="dark">
+      <div>
+         <div>
+            <div class="app">
+               <section>
+                  <div class="header-wrapper">
+                     <header class="dark">
+                        <a href="" class="logo implicit">
+                           <video src="video/logo.mp4" muted loop autoplay playsinline></video>
+							   <a href="" class="name implicit">Сетка</a></a>
+
+                        <div class="courses">
+                           <a href="" class="implicit">
+                              <span class="full">Основы гендизайна</span>
+                              <span class="short">Гендизайн</span>
+                           </a>
+
+                           <a href="web" class="implicit active">
+                              <span class="full">Веб-разработка</span>
+                              <span class="short">Веб</span>
+                           </a>
+
+                           <a href="tools" class="implicit">
+                              <span class="full">Инструменты</span>
+                              <span class="short">Тулз</span>
+                           </a>
+
+                           <a href="shaders" class="implicit">
+                              <span class="full">Шейдеры</span>
+                              <span class="short">Шейдеры</span>
+                           </a>
+                        </div>
+                     </header>
+                  </div>
+               </section>
+
+               <div class="page">
+                  <section id="header" class="compensated">
+                     <div class="header dark">
+                        <div class="background">
+                           <img src="images/web/waves.svg">
+                           <div class="item-container">
+                              <div class="item eye"><img src="images/web/eye_3d.svg"></div>
+                              <div class="item circle"></div>
+                              <div class="item film"><img src="images/web/frames/film-18.png"></div>
+                           </div>
+                        </div>
+
+                        <span class="suptitle"><b>Курс</b></span>
+                        <div class="title">
+                           <div class="name">
+                              <h1>JavaScript
+                                 по-дизай­нерски
+                              </h1>
+                           </div>
+                        </div>
+
+                        <div class="info-wrapper">
+                           <div class="info">19 авг — 13 сент</div>
+                           <div class="info">12 занятий</div>
+                           <a href="#buy" class="implicit info primary">
+                              Записаться
+                           </a>
+                        </div>
+                     </div>
+
+                     <div id="rectangles-wrapper"></div>
+                  </section>
+
+                  <section id="description" class="collapsed">
+                     <div class="w75">
+                        <p>За последние двадцать лет веб-сайты сильно изменились. Было-стало:</p>
+                     </div>
+
+                     <div class="comparison">
+                        <div class="item">
+                           <div class="container"><img src="images/web/yandex.png" style="filter:brightness(.95)"></div>
+                           <span class="caption">yandex.ru, 2003</span>
+                        </div>
+
+                        <div class="item">
+                           <div class="container">
+                              <video src="images/web/huly.mp4" muted autoplay loop></video>
+                           </div>
+                           <span class="caption"><a href="https://huly.io">huly.io</a>, 2024</span>
+                        </div>
+                     </div>
+
+                     <div class="w75">
+                        <p>Сегодня сайт слева можно сверстать на HTML/CSS за пару вечеров. А вот чтобы создавать сложные визуальные эффекты и интерактивные анимации, нужно уметь программировать. Разработка сайта справа стоила 90 000 $, потому что <i>не все так могут.</i></p>
+                        <p>На этом курсе мы поможем сделать первый шаг к тому, чтобы делать продвинутые динамичные сайты. Это вводный курс — мы с нуля расскажем основы программирования, разберём базовые примеры кодинга в вебе и расскажем, как самому учиться дальше, чтобы делать свои сайты круче и дороже.</p>
+                     </div>
+
+                     <div class="grid two dark">
+                        <div class="grid-item">
+                           <p><b>За четыре недели:</b></p>
+
+                           <ul>
+                              <li>расскажем основы<span class="accent">языка программирования JavaScript</span>;</li>
+                              <li>разберём и запрограммируем<span class="accent">6 интерактивных веб-штуковин</span>;</li>
+                              <li>расскажем, как превратить любую идею в реализацию.</li>
+                           </ul>
+
+                           <div class="space-xs"></div>
+
+                           <p><b>Дополнительно:</b></p>
+
+                           <ul>
+                              <li>покажем, как<span class="accent">вставить код в Тильду</span> или Редимаг;</li>
+                              <li>поможем научиться<span class="accent">говорить на одном языке</span> с разработчиками.</li>
+                           </ul>
+                        </div>
+
+                        <div class="grid-item">
+                           <p><b>Чего не будет:</b></p>
+
+                           <ul>
+                              <li>Мы не будем делать генеративную графику — приходите на<a href="" class="nuxt-link-active">курс гендизайна</a>.</li>
+                              <li>Мы не будем углубляться во все тонкости программирования, а дадим только те знания, которые нужны для практики.</li>
+                           </ul>
+
+                           <div class="space-xs"></div>
+
+                           <p><span class="accent">На этом курсе не будет основ вёрстки.</span></p>
+                           <p>Мы ожидаем, что вы знакомы с основами HTML и CSS. Не нужно быть профессиональным верстальщиком — достаточно прочитать <a href="https://developer.mozilla.org/ru/docs/Learn/Getting_started_with_the_web/HTML_basics">Основы HTML</a> и <a href="https://developer.mozilla.org/ru/docs/Learn/Getting_started_with_the_web/CSS_basics">Основы CSS</a> или пройти базовый курс по вёрстке — например, <a href="https://intuition.news/ru/how-to-design-with-code">от Интуиции</a>.</p>
+                        </div>
+                     </div>
+                  </section>
+
+                  <section id="program">
+                     <h1>Программа</h1>
+
+                     <div class="lessons">
+                        <div class="lesson">
+                           <div id="tree" class="sketch"></div>
+
+                           <div class="description">
+                              <h3>1—3.</h3>
+
+                              <p><b class="accent">Основы JavaScript</b></p>
+
+                              <ul>
+                                 <li>Отладка и консоль. Типы данных и арифметические операции. Переменные.</li>
+                                 <li>Ветвления и логические операции. Циклы. Делаем ёлочку.</li>
+                                 <li>Массивы. Функции, параметры и аргументы.</li>
+                              </ul>
+
+                           </div>
+                        </div>
+
+                        <div class="lesson">
+                           <div id="rectangles" class="sketch"></div>
+
+                           <div class="description">
+                              <h3>4.</h3>
+
+                              <p><b class="accent">Основы программирования сайта</b></p>
+
+                              <ul>
+                                 <li>Управляем содержимым страницы из кода.</li>
+                                 <li>Динамически задаём классы и стили.</li>
+                                 <li>Обрабатываем действия пользователя.</li>
+                              </ul>
+                           </div>
+                        </div>
+
+                        <div class="lesson">
+                           <div id="eyes" class="sketch"></div>
+
+                           <div class="description">
+                              <h3>5.</h3>
+
+                              <p><b class="accent">Отслеживание мыши</b></p>
+
+                              <ul>
+                                 <li>Обрабатываем движение мыши или тачпада и отслеживаем позицию курсора.</li>
+                                 <li>Пишем скрипт для следования объектов за мышью.</li>
+                                 <li>Эффект «просвечивания» при наведении мышки.</li>
+                                 <li>Генерируем новые объекты за курсором.</li>
+                              </ul>
+                           </div>
+                        </div>
+
+                        <div class="lesson">
+                           <div id="awake" class="sketch"></div>
+
+                           <div class="description">
+                              <h3>6.</h3>
+
+                              <p><b class="accent">Отслеживание скролла: часть 1</b></p>
+
+                              <ul>
+                                 <li>Учимся отслеживать скролл и определять положение страницы.</li>
+                                 <li>Эффект «пробуждения»: меняем классы и стили при появлении элемента в зоне видимости.</li>
+                                 <li>Определяем фазу проскролливания и создаём многоступеньчатую анимацию.</li>
+                              </ul>
+                           </div>
+                        </div>
+
+                        <div class="lesson">
+                           <div id="parallax" class="sketch"></div>
+
+                           <div class="description">
+                              <h3>7.</h3>
+
+                              <p><b class="accent">Отслеживание скролла: часть 2</b></p>
+
+                              <ul>
+                                 <li>Учимся делать плавные непрерывные анимации при проскроллировании страницы.</li>
+                                 <li>Эффект параллакса: добавляем на сайт иллюзию объёмности.</li>
+                                 <li>Покадровая анимация из видео при скролле сайта.</li>
+                              </ul>
+                           </div>
+                        </div>
+
+                        <div class="lesson">
+                           <div id="slider-sketch" class="sketch"></div>
+
+                           <div class="description">
+                              <h3>8.</h3>
+
+                              <p><b class="accent">Стоп-моушен</b></p>
+
+                              <ul>
+                                 <li>Делаем покадровую анимацию из набора картинок.</li>
+                                 <li>Привязываем ход анимации к движению мыши, скроллу или ко времени.</li>
+                                 <li>Добавляем дополнительные трансформации для придания динамики.</li>
+                              </ul>
+
+                              <div class="caption">Кассета фантастической красоты взята из проекта «<a href="https://intuition.news/ru/park/truezerno">Настоящее зерно</a>»</div>
+                           </div>
+                        </div>
+
+                        <div class="lesson">
+                           <div id="text" class="sketch"></div>
+                           <div class="description">
+                              <h3>9.</h3>
+
+                              <p><b class="accent">Типографика</b></p>
+
+                              <ul>
+                                 <li>Управляем параметрами текста прямо из кода. Меняем кегль и вариативные настройки.</li>
+                                 <li>Пишем алгоритм, который подбирает размер текста исходя из ширины контейнера.</li>
+                                 <li>Создаём паттерн из текста.</li>
+                              </ul>
+
+                           </div>
+                        </div>
+
+                        <div class="lesson">
+                           <div class="description">
+                              <h3>10.</h3>
+
+                              <p><b class="accent">Вставляем в конструктор</b></p>
+
+                              <p>Учимся вставлять свой код в Тильду и Редимаг.</p>
+                           </div>
+						</div>
+
+                        <div class="lesson">
+                           <div id="snow" class="sketch"></div>
+
+                           <div class="description">
+                              <h3>11—12.</h3>
+
+                              <p><b class="accent">Делаем что-то вместе</b></p>
+
+                              <ul>
+                                 <li>Отвечаем на вопросы и помогаем запрограммировать примеры веб-штуковин, принесённые с собой и из интернета.</li>
+                                 <li>А как закодить это? А это? А какие ещё есть разные штуки? А что делать дальше?</li>
+                                 <li>И другие разные вопросы всякие.</li>
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                  </section>
+
+                  <section id="faq">
+                     <h1>FAQ</h1>
+
+                     <div class="faq w75">
+                        <div class="menu">
+                           <div class="option selected">Не умею программировать</div>
+                           <div class="option">Не умею верстать</div>
+                           <div class="option">Не умею дизайнить</div>
+                           <div class="option">Программирование — это страшно</div>
+                           <div class="option">Уже умею программировать</div>
+                           <div class="option">Устроиться на работу</div>
+                           <div class="option">Не подходит расписание</div>
+                           <div class="option">Время на домашку</div>
+                           <div class="option">Способы оплаты</div>
+                           <div class="option">Провести в компании</div>
+                           <div class="option">Сертификат об обучении</div>
+                           <div class="option">Ещё что-то</div>
+                        </div>
+
+                        <div>
+                           <b><em>— Я ещё не умею программировать. Мне подойдёт курс?</em></b>
+                           <p>Да, курс рассчитан на новичков. Мы обучаем программированию с нуля и начинаем с самых-самых основ.</p>
+                        </div>
+                     </div>
+                  </section>
+
+				  <section id="teachers">
+                     <h3>Курс ведут</h3>
+
+                     <div class="teachers grid two">
+                        <div class="teacher grid-item">
+                           <div class="video-background">
+                              <video src="video/ivan_preview.mp4" muted autoplay loop playsinline></video>
+                           </div>
+
+                           <div class="name">Иван Дианов</div>
+
+                           <div class="description"><span><a href="https://www.hse.ru/org/persons/503426276">Преподаватель дата-арта в ВШЭ</a>, амбассадор генеративного дизайна в России, основатель <a href="https://genclub.club/">Генклуба</a>. Задаёт вопросы, помогает всем в чате и разбавляет занятие своим бархатным басом.</span></div>
+                        </div>
+
+                        <div class="teacher grid-item">
+                           <div class="video-background">
+                              <video src="video/adam_preview.mp4" muted autoplay loop playsinline></video>
+                           </div>
+
+                           <div class="name">Адам Арутюнов</div>
+
+                           <div class="description"><span><a href="https://adam.ci">Разработчик</a> в сфере автоматизации дизайна. Делал Потокус, Фокус и Иронова в <a href="https://design.ru/adamarutyunov">Студии Артемия Лебедева</a>. Ведёт занятия.</span></div>
+                        </div>
+                     </div>
+                  </section>
+
+                  <section id="reviews">
+                     <h1>Отзывы</h1>
+
+                     <div class="reviews w75">
+                        <div class="review">
+                           <div class="photo"><img src="images/reviews/wankershim.jpg"></div>
+
+                           <div class="content">
+                              <div class="author"><b>Софья Келемзина</b><b>, дизайнер в <a href="https://nikitakozin.com">nikitakozin.com</a></b></div>
+
+                              <div class="text">
+                                 <p><em>Вёрстка — ван лав, JS — целый новый мир.</em></p>
+                                 <p>У меня теперь есть новая игрушка! Вместо того, чтоб вечером залипнуть в какую-нибудь компьютерную игру, я теперь сажусь ковырять вёрстку и JS :-) Так же увлекательно! И гайды есть: теперь я всегда знаю куда подсмотреть, если что-то не получается.</p>
+                              </div>
+                           </div>
+                        </div>
+
+                        <div class="review">
+                           <div class="photo"><img src="images/reviews/AntoninaPecherskaya.jpg"></div>
+
+                           <div class="content">
+                              <div class="author"><b><a href="https://www.behance.net/5d2fbb2bap" class="adaptive">Антонина Печерская</a></b><b>, начинающий UI/UX-дизайнер</b></div>
+
+                              <div class="text">
+                                 <p>Очень большие плюсы, которые мне помогали: объяснение HTML сразу в паре с CSS и уточняющие вопросы Ивана во время лекций. И само собой, разжёвывание даже самых простых вещей от Адама.</p>
+                              </div>
+                           </div>
+                        </div>
+
+                        <div class="review">
+                           <div class="photo"><img src="images/reviews/gecko25101.jpg"></div>
+
+                           <div class="content">
+                              <div class="author"><b><a href="https://www.instagram.com/gekkonidd" class="adaptive">Рустам Мушраипов</a></b><b>, дизайнер</b></div>
+
+                              <div class="text">
+                                 <p>Узнал, что всё не так сложно, как казалось всегда. Пока что пробую играться с инструментом и прощупать возможности дальше. Готовлю обновление портфолио.</p>
+								 <p></p>
+                                 <p><em>Самое полезное на курсе — принципы и живость. Это не туториалы, а именно обучение.</em></p>
+                                 <p>Круто, что рассказываете больше о принципах работы. Понравилось, что оставляете темы открытыми типа «про все остальные элементы можно гуглить» или «тут техническая заморочка, можно не углубляться». Кажется, что так и должно быть в живой работе над проектом.</p>
+                                 <p></p>
+								 <p>Готовился, что местами будет муторно и скучно. Ожидания не оправдались. Ожидал, что месяц 3 раза в неделю — это много. Пролетело незаметно.</p>
+                              </div>
+                           </div>
+						</div>
+
+						<div class="review">
+                           <div class="photo"><img src="images/reviews/ivan_dianov.jpg"></div>
+
+						   <div class="content">
+							   <div class="author"><b><a href="https://ivandianov.com/" class="adaptive">Иван Дианов</a></b><b>, преподаватель</b></div>
+
+							   <div class="text">
+								   <p>Классно, что можно перебивать Адама и мне за это ничего не будет.</p>
+							   </div>
+						   </div>
+						</div>
+					 </div>
+				  </section>
+
+				  <section id="format" class="half">
+					  <h1>Формат</h1>
+					  <div class="grid dark">
+						  <div class="grid-item">
+							  <ul class="w75">
+								  <li><b>Курс длится 4 недели, с 19 августа по 13 сентября;</b></li>
+								  <li>Три занятия в неделю: в понедельник, среду и пятницу;</li>
+								  <li>Занятия проходят в Зуме, начинаются в 17:00 по Москве и длятся полтора часа;</li>
+								  <li>Общий чат в Телеграме, где можно задать вопрос или поделиться чем угодно;</li>
+								  <li>Доступ к записям занятий и к чату сохраняется навсегда.</li>
+							  </ul>
+						  </div>
+					  </div>
+				  </section>
+
+				  <section id="buy" class="dark">
+					  <div class="wrapper">
+						  <div class="buy-block grid two">
+							  <div class="grid-item">
+								  <h3>Записаться на курс</h3>
+
+								  <div class="space-xs"></div>
+
+								  <span>Набор закрыт. Подпишитесь на наш <a href="https://t.me/setka_design">телеграм-канал</a>, чтобы не пропустить начало следующего набора.</span>
+
+								  <div class="action">
+									  <div class="controls"><button disabled onclick='return ym(94252873,"reachGoal","Buy_web"),!0'>Заплатить</button></div>
+								  </div>
+							  </div>
+
+							  <div class="form grid-item">
+								  <div class="disclaimer">
+									  <p>Оплата через телеграм-бота, платёж обрабатывает ЮКасса. После оплаты бот пришлёт ссылку на телеграм-чат.</p>
+									  <p>Принимаются российские карты. Если такой нет — <a href="https://t.me/adam_arutyunov">пишите</a>, что-нибудь придумаем. Можно оплатить по реквизитам ИП. Принимаем оплату по безналу от юрлиц.</p>
+									  <p>При покупке действует <a href="https://messy-emperor-647.notion.site/7cec5906c1914a8ebd98dee051c027a7">публичная оферта</a> и <a href="https://messy-emperor-647.notion.site/cdf7ee711a5c41518a4ad3390935f34b">политика обработки персональных данных</a>.</p>
+								  </div>
+							  </div>
+						  </div>
+
+						  <header dark="true" class="dark">
+							  <a href="" class="logo implicit">
+								  <video src="video/logo.mp4" muted loop autoplay playsinline></video>
+							  </a>
+							  <a href="" class="name implicit">Сетка</a>
+
+							  <div class="social">
+								  <div>
+									  <a href="https://t.me/setka_design" class="implicit">
+										  <img src="images/social/telegram.svg">
+
+									  </a>
+									  <a href="https://t.me/setka_design">Телеграм</a>
+								  </div>
+
+								  <div>
+									  <a href="https://instagram.com/setkadesign" class="implicit">
+										  <img src="images/social/instagram.svg">
+									  </a>
+									  <a href="https://instagram.com/setkadesign">Инста</a>
+								  </div>
+							  </div>
+						  </header>
+					  </div>
+				  </section>
+			   </div>
+			</div>
+		 </div>
+	  </div>
+
+     <script src="script.js"></script>
+   </body>
+</html>
