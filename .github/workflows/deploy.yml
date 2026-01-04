@@ -5,12 +5,16 @@ on:
     branches:
       - main
     paths:
-      - 'course-portfolio/**' # Экшен запустится только если изменились файлы в этой папке
-  workflow_dispatch: # Оставляем возможность запускать вручную
+      - 'course-portfolio/**'
+  workflow_dispatch: # Кнопка ручного запуска
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    # Это заставит все шаги 'run' выполняться внутри вашей папки по умолчанию
+    defaults:
+      run:
+        working-directory: course-portfolio
 
     steps:
       - name: Checkout repo
@@ -19,22 +23,18 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 20
           cache: 'npm'
-          # Если package.json лежит внутри папки, указываем путь для кэширования
           cache-dependency-path: course-portfolio/package-lock.json
 
       - name: Install dependencies
-        # Переходим в папку перед установкой
-        run: cd course-portfolio && npm ci
+        run: npm ci
 
       - name: Build project
-        # Переходим в папку перед сборкой
-        run: cd course-portfolio && npm run build
+        run: npm run build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          # Указываем путь к папке dist внутри вашей папки проекта
           publish_dir: ./course-portfolio/dist
