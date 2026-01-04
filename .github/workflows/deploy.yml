@@ -3,8 +3,10 @@ name: Deploy Portfolio
 on:
   push:
     branches:
-      - course-portfolio # Авто-деплой при пуше в ветку с сайтом
-  workflow_dispatch:     # Кнопка ручного запуска
+      - main
+    paths:
+      - 'course-portfolio/**' # Экшен запустится только если изменились файлы в этой папке
+  workflow_dispatch: # Оставляем возможность запускать вручную
 
 jobs:
   build-and-deploy:
@@ -13,26 +15,26 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
-        with:
-          # ВАЖНО: берем код именно из ветки с сайтом
-          ref: course-portfolio 
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: 'npm'
+          # Если package.json лежит внутри папки, указываем путь для кэширования
+          cache-dependency-path: course-portfolio/package-lock.json
 
       - name: Install dependencies
-        run: npm ci
+        # Переходим в папку перед установкой
+        run: cd course-portfolio && npm ci
 
       - name: Build project
-        run: npm run build
+        # Переходим в папку перед сборкой
+        run: cd course-portfolio && npm run build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist # Папка, которую создает Vite
-          # Опционально: удалять ли старые файлы в ветке gh-pages перед деплоем
-          force_orphan: true 
+          # Указываем путь к папке dist внутри вашей папки проекта
+          publish_dir: ./course-portfolio/dist
