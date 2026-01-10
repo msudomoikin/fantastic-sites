@@ -1,11 +1,48 @@
-name: Manual Deploy
+name: Deploy Portfolio
 
 on:
-  workflow_dispatch: # Только ручной запуск для теста
+  # 1. Автоматический запуск при изменениях в папке сайта
+  push:
+    branches:
+      - main
+    paths:
+      - 'course-portfolio/**'
+
+  # 2. Ручной запуск (появится кнопка Run Workflow)
+  workflow_dispatch:
 
 jobs:
-  test:
+  build-and-deploy:
     runs-on: ubuntu-latest
+    
+    # Указываем, что все команды выполняются внутри папки с проектом
+    defaults:
+      run:
+        working-directory: course-portfolio
+
     steps:
-      - name: Hello World
-        run: echo "It works!"
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          # Путь к lock-файлу для корректного кэша
+          cache-dependency-path: course-portfolio/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build project
+        run: npm run build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # Путь к папке dist относительно корня репозитория
+          publish_dir: ./course-portfolio/dist
+          # Очищать ли ветку gh-pages перед деплоем (рекомендуется true)
+          force_orphan: true
