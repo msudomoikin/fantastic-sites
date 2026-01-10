@@ -1,0 +1,32 @@
+@use '../mixins';
+
+.mouse-move {
+    &__container {
+        @include mixins.add-border;
+        @include mixins.sketch-container;
+        position: relative;
+    }
+
+
+    .dot {
+        will-change: transform, background-color;
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        background-color: orange;
+        border-radius: 50%;
+        pointer-events: none;
+        transform: scale(1);
+        transition: transform .6s ease-in-out, background-color .3s ease-out;
+
+        &--perm {
+            z-index: 2;
+        }
+
+        &.remove {
+            transform: scale(0);
+            background-color: orangered;
+        }
+    }
+
+}

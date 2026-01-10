@@ -3,28 +3,25 @@ import { getRandomInt } from "./helpers"
 let colorTemplate = 'r'
 let rotateMultiplayer = 5
 const color = ['r', 'g', 'b']
+
 let container = document.querySelector('.break-dom__container')!
+const reloadBtn = document.querySelector('.break-dom__reload')!;
 
 container.addEventListener('click', randomize)
-
+reloadBtn.addEventListener('click', randomize)
 
 export function createGrid() {
     container.innerHTML = ''
-    for (let i = 0; i < 255; i = i + 1) {
-        // createElement
+    for (let i = 0; i < 130; i = i + 1) {
         let newElement = document.createElement('div')
         newElement.classList.add('break-dom__rectangle')
         newElement.style.width = `${i * 2}px`
-        // innerText    
         const text = document.createElement('span')
         text.classList.add('break-dom__rectangle-text');
         text.textContent = String(i)
         newElement.append(text)
 
         colorize(newElement, i)
-
-
-        // append
         container.append(newElement)
     }
 }

@@ -6,11 +6,7 @@
         text-align: center;
         white-space-collapse: preserve-breaks;
         cursor: pointer;
+        @include mixins.sketch-container;
         @include mixins.add-border;
-    }
-
-    &__reload {
-        cursor: pointer;
-        font-size: smaller;
     }
 }

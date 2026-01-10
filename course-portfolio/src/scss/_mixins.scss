@@ -2,3 +2,8 @@
     border-radius: 18px;
     border: 1px solid #111;
 }
+
+@mixin sketch-container {
+    overflow: hidden;
+    height: 500px;
+}

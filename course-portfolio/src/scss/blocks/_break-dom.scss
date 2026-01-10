@@ -3,8 +3,8 @@
 .break-dom {
     &__container {
         @include mixins.add-border;
-        overflow: hidden;
-        max-height: 500px;
+        @include mixins.sketch-container;
+        cursor: pointer;
     }
 
     &__rectangle {
@@ -20,4 +20,3 @@
         will-change: background-color, transform;
     }
 }
-// trigger github workfl
