@@ -24,10 +24,11 @@ const trackXray = () => {
     
     xrayContainer.addEventListener('touchmove', (event) => {
         const e = event as TouchEvent
+        e.preventDefault();
         if (e.touches.length > 0) {
             updatePointerPosition(e.touches[0].clientX, e.touches[0].clientY)
         }
-    }, { passive: true })
+    }, { passive: false })
 }
 
 const placeUfo = () => {

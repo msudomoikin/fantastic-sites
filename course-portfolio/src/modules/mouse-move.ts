@@ -48,9 +48,10 @@ export const trackMouse = () => {
     
     mouseMoveContainer.addEventListener('touchmove', (event) => {
         const e = event as TouchEvent
+        e.preventDefault();
         if (e.touches.length > 0) {
             const pos = getPosition(e.touches[0], mouseMoveContainer);
             createDot(pos.x, pos.y)
         }
-    }, { passive: true })
+    }, { passive: false })
 }

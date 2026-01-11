@@ -35,6 +35,7 @@ const onMouseMove = (event: MouseEvent) => {
 }
 
 const onTouchMove = (event: TouchEvent) => {
+    event.preventDefault();
     if (event.touches.length > 0) {
         updateParallax(event.touches[0].clientX);
     }
@@ -71,5 +72,5 @@ export const setupParallax = async () => {
     });
 
     container.addEventListener('mousemove', onMouseMove as EventListener);
-    container.addEventListener('touchmove', onTouchMove as EventListener, { passive: true });
+    container.addEventListener('touchmove', onTouchMove as EventListener, { passive: false });
 }
