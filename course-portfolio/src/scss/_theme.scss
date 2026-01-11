@@ -1,61 +1,141 @@
 // ============================================
 // THEME: Braun / Cherry — Retro Tech Aesthetic
-// Low contrast, muted tones, functional design
+// Low contrast base + sharper typography accents
 // ============================================
 
+// Optional: modern bold display + mono for “terminal” UI
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
 // === VARIABLES ===
-$bg-base: #e8e4df;        // Warm off-white, like old plastic
-$bg-card: #d9d4ce;        // Slightly darker for cards
-$bg-inset: #cec9c3;       // Inset/pressed areas
+$bg-base: #ede9e3;        // Warm off-white, like old plastic
+$bg-card: #ddd7d1;        // Slightly darker for cards
+$bg-inset: #d2ccc6;       // Inset/pressed areas
 
-$text-primary: #3d3a36;   // Warm dark gray
-$text-secondary: #6b6660; // Muted text
-$text-tertiary: #9a948c;  // Captions, hints
+$text-primary: #2f2d2a;   // Warm near-black (still soft)
+$text-secondary: #5f5a54; // Muted text
+$text-tertiary: #8f887f;  // Captions, hints
 
-$accent: #c54b32;         // Braun-style warm red/orange
-$accent-hover: #a83d28;
+$accent: #c24d33;         // Braun-style warm red/orange
 
-$border-color: #b8b3ac;
-$border-dark: #a8a39c;
+$accent-hover: #9f3f2a;
 
-$font-mono: 'IBM Plex Mono', 'SF Mono', 'Consolas', monospace;
-$font-display: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+$border-color: #bdb7b0;
+$border-dark: #9f9a93;
+
+$font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', 'Consolas', monospace;
+$font-display: 'Space Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
 
 $border-subtle: 1px solid $border-color;
 $border-medium: 2px solid $border-dark;
 $radius: 3px;
 $transition: 0.2s ease;
 
+:root {
+  --bg-base: #{$bg-base};
+  --bg-card: #{$bg-card};
+  --bg-inset: #{$bg-inset};
+  --text-primary: #{$text-primary};
+  --text-secondary: #{$text-secondary};
+  --text-tertiary: #{$text-tertiary};
+  --accent: #{$accent};
+  --accent-hover: #{$accent-hover};
+}
+
+* {
+  box-sizing: border-box;
+}
+
 // === BASE STYLES ===
 body {
   background: $bg-base;
+  // Subtle “industrial” texture (very low contrast)
+  background-image:
+    radial-gradient(rgba($text-primary, 0.05) 0.8px, transparent 0.8px);
+  background-size: 26px 26px;
   color: $text-primary;
-  font-family: $font-mono;
+  font-family: $font-display;
   line-height: 1.6;
-  font-size: 0.95rem;
+  // Global type scale (min 16px on small screens)
+  font-size: clamp(16px, 1.2vw + 12px, 18px);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+}
+
+@media (max-width: 576px) {
+  body {
+    font-size: 16px;
+  }
+}
+
+p {
+  color: $text-secondary;
 }
 
 // === TYPOGRAPHY ===
 h1, h2, h3 {
   font-family: $font-display;
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  font-weight: 700;
+  letter-spacing: -0.03em;
 }
 
 h1 {
-  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  font-size: clamp(2.4rem, 5.5vw, 4rem);
   color: $text-primary;
+  line-height: 1.02;
+  text-transform: uppercase;
+  letter-spacing: -0.045em;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 4px;
+    background: $accent;
+    margin-top: 0.75rem;
+  }
 }
 
 h2 {
-  font-size: 1rem;
-  font-weight: 500;
-  color: $text-secondary;
+  font-family: $font-mono;
+  font-size: clamp(1.25rem, 1.6vw + 0.95rem, 1.85rem);
+  font-weight: 700;
+  color: $text-primary;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding-bottom: 0.5rem;
+  letter-spacing: 0.14em;
+  padding-bottom: 0;
   margin-bottom: 1rem;
-  border-bottom: $border-subtle;
+  border-bottom: none;
+  font-variant-numeric: tabular-nums;
+}
+
+// Sketch numbering (0, 1, 2...) before each section title
+main {
+  counter-reset: sketch -1;
+}
+
+main > section {
+  counter-increment: sketch;
+}
+
+main > section h2::before {
+  content: counter(sketch) ' - ';
+  color: rgba($text-tertiary, 0.95);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  margin-right: 0.9rem;
+  display: inline-block;
+  opacity: 0.65;
+}
+
+main > section {
+  position: relative;
+}
+
+// Slightly punchier body copy (still calm)
+header p,
+section p {
+  font-size: 1.02em;
+  line-height: 1.7;
 }
 
 // === HEADER ===
@@ -66,13 +146,15 @@ header {
   
   p {
     color: $text-secondary;
-    font-size: 0.875rem;
+    font-size: 1.275rem;
     max-width: 50ch;
   }
   
   a {
     color: $accent;
     text-decoration: none;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
     
     &:hover {
       color: $accent-hover;
@@ -101,11 +183,30 @@ section {
   border-radius: $radius;
   position: relative;
   overflow: hidden;
+  transition: border-color $transition, box-shadow $transition, transform $transition;
   
   // Inset shadow for that pressed-button feel
   box-shadow: 
     inset 2px 2px 4px rgba(0, 0, 0, 0.08),
-    inset -1px -1px 2px rgba(255, 255, 255, 0.5);
+    inset -1px -1px 2px rgba(255, 255, 255, 0.55),
+    0 10px 24px rgba(0, 0, 0, 0.06);
+
+  &:hover {
+    border-color: mix($border-dark, $text-primary, 55%);
+    box-shadow:
+      inset 2px 2px 4px rgba(0, 0, 0, 0.08),
+      inset -1px -1px 2px rgba(255, 255, 255, 0.55),
+      0 14px 28px rgba(0, 0, 0, 0.10);
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow:
+      inset 3px 3px 6px rgba(0, 0, 0, 0.10),
+      inset -1px -1px 2px rgba(255, 255, 255, 0.50),
+      0 8px 18px rgba(0, 0, 0, 0.06);
+  }
 }
 
 // === RELOAD BUTTON ===
@@ -128,9 +229,17 @@ section {
 a {
   color: $accent;
   transition: $transition;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
   
   &:hover {
     color: $accent-hover;
+  }
+
+  &:focus-visible {
+    outline: 2px solid rgba($accent, 0.5);
+    outline-offset: 2px;
+    border-radius: 2px;
   }
 }
 
@@ -139,6 +248,7 @@ a {
   font-size: 0.7rem;
   color: $text-tertiary;
   margin-top: 0.5rem;
+  font-family: $font-mono;
   
   a {
     color: $text-tertiary;
