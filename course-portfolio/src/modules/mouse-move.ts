@@ -32,9 +32,25 @@ const createDot = (x: number, y: number) => {
     oldY = newY
 }
 
+const getPosition = (event: MouseEvent | Touch, container: Element): { x: number, y: number } => {
+    const rect = container.getBoundingClientRect();
+    return {
+        x: event.clientX - rect.left,
+        y: event.clientY - rect.top
+    };
+}
+
 export const trackMouse = () => {
     mouseMoveContainer.addEventListener('mousemove', (event) => {
         const e = event as MouseEvent
         createDot(e.offsetX, e.offsetY)
     })
+    
+    mouseMoveContainer.addEventListener('touchmove', (event) => {
+        const e = event as TouchEvent
+        if (e.touches.length > 0) {
+            const pos = getPosition(e.touches[0], mouseMoveContainer);
+            createDot(pos.x, pos.y)
+        }
+    }, { passive: true })
 }
