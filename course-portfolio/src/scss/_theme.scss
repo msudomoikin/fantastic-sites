@@ -1,104 +1,89 @@
 // ============================================
-// THEME: Terminal Futurism + Neo-Brutalism
-// Creative Coding Portfolio
+// THEME: Braun / Cherry — Retro Tech Aesthetic
+// Low contrast, muted tones, functional design
 // ============================================
 
 // === VARIABLES ===
-$bg-dark: #0a0a0f;
-$bg-card: #12121a;
-$accent-primary: #00ff88;
-$accent-secondary: #ff3366;
-$accent-tertiary: #7b61ff;
-$text-main: #e8e8e8;
-$text-muted: #6b6b7b;
-$border-color: #2a2a3a;
+$bg-base: #e8e4df;        // Warm off-white, like old plastic
+$bg-card: #d9d4ce;        // Slightly darker for cards
+$bg-inset: #cec9c3;       // Inset/pressed areas
 
-$font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
-$font-display: system-ui, -apple-system, 'Segoe UI', sans-serif;
+$text-primary: #3d3a36;   // Warm dark gray
+$text-secondary: #6b6660; // Muted text
+$text-tertiary: #9a948c;  // Captions, hints
 
-$border-thick: 3px solid $border-color;
-$transition-fast: 0.15s ease;
-$transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+$accent: #c54b32;         // Braun-style warm red/orange
+$accent-hover: #a83d28;
+
+$border-color: #b8b3ac;
+$border-dark: #a8a39c;
+
+$font-mono: 'IBM Plex Mono', 'SF Mono', 'Consolas', monospace;
+$font-display: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+
+$border-subtle: 1px solid $border-color;
+$border-medium: 2px solid $border-dark;
+$radius: 3px;
+$transition: 0.2s ease;
 
 // === BASE STYLES ===
 body {
-  background: $bg-dark;
-  color: $text-main;
+  background: $bg-base;
+  color: $text-primary;
   font-family: $font-mono;
   line-height: 1.6;
-  
-  // Subtle grid pattern
-  background-image: 
-    linear-gradient(rgba($accent-primary, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba($accent-primary, 0.03) 1px, transparent 1px);
-  background-size: 40px 40px;
+  font-size: 0.95rem;
 }
 
 // === TYPOGRAPHY ===
 h1, h2, h3 {
   font-family: $font-display;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: -0.01em;
 }
 
 h1 {
-  font-size: clamp(2.5rem, 8vw, 5rem);
-  background: linear-gradient(135deg, $accent-primary, $accent-tertiary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  
-  &::before {
-    content: '> ';
-    -webkit-text-fill-color: $accent-secondary;
-  }
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  color: $text-primary;
 }
 
 h2 {
-  font-size: clamp(1.25rem, 3vw, 1.75rem);
-  color: $text-main;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.5rem 0;
-  border-bottom: 2px solid $accent-primary;
-  
-  &::before {
-    content: '//';
-    color: $accent-tertiary;
-    font-weight: 400;
-  }
+  font-size: 1rem;
+  font-weight: 500;
+  color: $text-secondary;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  border-bottom: $border-subtle;
 }
 
 // === HEADER ===
 header {
   border: none !important;
-  border-bottom: $border-thick !important;
-  background: linear-gradient(180deg, rgba($accent-tertiary, 0.1) 0%, transparent 100%);
+  border-bottom: $border-medium !important;
+  background: $bg-card;
   
   p {
-    color: $text-muted;
-    font-size: 0.9rem;
+    color: $text-secondary;
+    font-size: 0.875rem;
     max-width: 50ch;
   }
   
   a {
-    color: $accent-primary;
+    color: $accent;
     text-decoration: none;
-    border-bottom: 1px dashed $accent-primary;
-    transition: $transition-fast;
     
     &:hover {
-      color: $accent-secondary;
-      border-color: $accent-secondary;
+      color: $accent-hover;
+      text-decoration: underline;
     }
   }
 }
 
 // === SECTIONS ===
 section {
-  padding: 2rem 0;
+  padding: 1.5rem 0;
   
   .container {
     position: relative;
@@ -111,113 +96,81 @@ section {
 .mouse-move__container,
 .xray__container,
 .parallax__container {
-  background: $bg-card;
-  border: $border-thick;
-  border-radius: 4px;
+  background: $bg-inset;
+  border: $border-medium;
+  border-radius: $radius;
   position: relative;
   overflow: hidden;
   
-  // Corner accents
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    width: 12px;
-    height: 12px;
-    border: 2px solid $accent-primary;
-    pointer-events: none;
-    z-index: 10;
-  }
-  
-  &::before {
-    top: -1px;
-    left: -1px;
-    border-right: none;
-    border-bottom: none;
-  }
-  
-  &::after {
-    bottom: -1px;
-    right: -1px;
-    border-left: none;
-    border-top: none;
-  }
+  // Inset shadow for that pressed-button feel
+  box-shadow: 
+    inset 2px 2px 4px rgba(0, 0, 0, 0.08),
+    inset -1px -1px 2px rgba(255, 255, 255, 0.5);
 }
 
 // === RELOAD BUTTON ===
 .reload {
-  color: $text-muted;
+  color: $text-tertiary;
   cursor: pointer;
-  transition: $transition-smooth;
-  font-size: 0.8em;
+  transition: $transition;
+  font-size: 0.85em;
   
   &:hover {
-    color: $accent-primary;
-    transform: rotate(180deg);
+    color: $accent;
   }
   
   &:active {
-    transform: rotate(360deg) scale(0.9);
+    color: $accent-hover;
   }
 }
 
 // === LINKS & CAPTIONS ===
 a {
-  color: $accent-primary;
-  transition: $transition-fast;
+  color: $accent;
+  transition: $transition;
   
   &:hover {
-    color: lighten($accent-primary, 15%);
+    color: $accent-hover;
   }
 }
 
 .caption {
   display: block;
-  font-size: 0.75rem;
-  color: $text-muted;
+  font-size: 0.7rem;
+  color: $text-tertiary;
   margin-top: 0.5rem;
   
   a {
-    color: $text-muted;
-    opacity: 0.7;
+    color: $text-tertiary;
     
     &:hover {
-      opacity: 1;
-      color: $accent-primary;
+      color: $accent;
     }
   }
 }
 
 // === SCROLLBAR ===
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: $bg-dark;
+  background: $bg-card;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: $border-color;
-  border-radius: 4px;
+  background: $border-dark;
+  border-radius: $radius;
+  border: 2px solid $bg-card;
   
   &:hover {
-    background: $accent-tertiary;
+    background: $text-tertiary;
   }
 }
 
 // === SELECTION ===
 ::selection {
-  background: rgba($accent-primary, 0.3);
-  color: $text-main;
-}
-
-// === UTILITY CLASSES ===
-.glow {
-  box-shadow: 0 0 20px rgba($accent-primary, 0.3);
-}
-
-.glow-text {
-  text-shadow: 0 0 10px rgba($accent-primary, 0.5);
+  background: rgba($accent, 0.2);
+  color: $text-primary;
 }
