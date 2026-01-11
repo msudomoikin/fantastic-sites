@@ -71,6 +71,10 @@ export const setupParallax = async () => {
         cloud.style.animationDirection = direction;
     });
 
+    // Set initial transforms (x = 0, centered position)
+    const rect = container.getBoundingClientRect();
+    updateParallax(rect.left + rect.width / 2);
+
     container.addEventListener('mousemove', onMouseMove as EventListener);
     container.addEventListener('touchmove', onTouchMove as EventListener, { passive: false });
 }
