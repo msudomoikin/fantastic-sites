@@ -14,7 +14,6 @@ reloadBtn.addEventListener('click', () => {
 export function createTree() {
     const treeHeight = 9
 
-    container.textContent = ''
     container.textContent += createTreeSegment(1, '*', '', treeHeight)
     container.textContent += createTreeSegment(3, '^', '❂', treeHeight)
     container.textContent += createTreeSegment(5, '^', '⚉', treeHeight)

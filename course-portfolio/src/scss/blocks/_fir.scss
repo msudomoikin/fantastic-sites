@@ -7,6 +7,7 @@
         white-space-collapse: preserve-breaks;
         cursor: pointer;
         @include mixins.sketch-container;
+        min-height: 512px;
         @include mixins.add-border;
     }
 }
