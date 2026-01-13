@@ -7,15 +7,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
 // === VARIABLES ===
-$bg-base: #ede9e3;        // Warm off-white, like old plastic
-$bg-card: #ddd7d1;        // Slightly darker for cards
-$bg-inset: #d2ccc6;       // Inset/pressed areas
+$bg-base: #ede9e3; // Warm off-white, like old plastic
+$bg-card: #ddd7d1; // Slightly darker for cards
+$bg-inset: #d2ccc6; // Inset/pressed areas
 
-$text-primary: #2f2d2a;   // Warm near-black (still soft)
+$text-primary: #2f2d2a; // Warm near-black (still soft)
 $text-secondary: #5f5a54; // Muted text
-$text-tertiary: #8f887f;  // Captions, hints
+$text-tertiary: #8f887f; // Captions, hints
 
-$accent: #c24d33;         // Braun-style warm red/orange
+$accent: #c24d33; // Braun-style warm red/orange
 
 $accent-hover: #9f3f2a;
 
@@ -72,7 +72,9 @@ p {
 }
 
 // === TYPOGRAPHY ===
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   font-family: $font-display;
   font-weight: 700;
   letter-spacing: -0.03em;
@@ -113,11 +115,11 @@ main {
   counter-reset: sketch -1;
 }
 
-main > section {
+main>section {
   counter-increment: sketch;
 }
 
-main > section h2::before {
+main>section h2::before {
   content: counter(sketch) ' - ';
   color: rgba($text-tertiary, 0.95);
   font-weight: 500;
@@ -127,7 +129,7 @@ main > section h2::before {
   opacity: 0.65;
 }
 
-main > section {
+main>section {
   position: relative;
 }
 
@@ -143,19 +145,19 @@ header {
   border: none !important;
   border-bottom: $border-medium !important;
   background: $bg-card;
-  
+
   p {
     color: $text-secondary;
     font-size: 1.275rem;
     max-width: 50ch;
   }
-  
+
   a {
     color: $accent;
     text-decoration: none;
     text-decoration-thickness: 2px;
     text-underline-offset: 3px;
-    
+
     &:hover {
       color: $accent-hover;
       text-decoration: underline;
@@ -166,47 +168,25 @@ header {
 // === SECTIONS ===
 section {
   padding: 1.5rem 0;
-  
+
   .container {
     position: relative;
   }
 }
 
 // === INTERACTIVE CONTAINERS ===
-.fir__container,
-.break-dom__container,
-.mouse-move__container,
-.xray__container,
-.parallax__container {
+.sketch-container {
   background: $bg-inset;
-  border: $border-medium;
   border-radius: $radius;
   position: relative;
   overflow: hidden;
-  transition: border-color $transition, box-shadow $transition, transform $transition;
-  
-  // Inset shadow for that pressed-button feel
-  box-shadow: 
+
+  border-color: mix($border-dark, $text-primary, 55%);
+  box-shadow:
     inset 2px 2px 4px rgba(0, 0, 0, 0.08),
     inset -1px -1px 2px rgba(255, 255, 255, 0.55),
-    0 10px 24px rgba(0, 0, 0, 0.06);
+    0 14px 28px rgba(0, 0, 0, 0.10);
 
-  &:hover {
-    border-color: mix($border-dark, $text-primary, 55%);
-    box-shadow:
-      inset 2px 2px 4px rgba(0, 0, 0, 0.08),
-      inset -1px -1px 2px rgba(255, 255, 255, 0.55),
-      0 14px 28px rgba(0, 0, 0, 0.10);
-    transform: translateY(-1px);
-  }
-
-  &:active {
-    transform: translateY(0);
-    box-shadow:
-      inset 3px 3px 6px rgba(0, 0, 0, 0.10),
-      inset -1px -1px 2px rgba(255, 255, 255, 0.50),
-      0 8px 18px rgba(0, 0, 0, 0.06);
-  }
 }
 
 // === RELOAD BUTTON ===
@@ -215,11 +195,11 @@ section {
   cursor: pointer;
   transition: $transition;
   font-size: 0.85em;
-  
+
   &:hover {
     color: $accent;
   }
-  
+
   &:active {
     color: $accent-hover;
   }
@@ -231,7 +211,7 @@ a {
   transition: $transition;
   text-decoration-thickness: 2px;
   text-underline-offset: 3px;
-  
+
   &:hover {
     color: $accent-hover;
   }
@@ -249,10 +229,10 @@ a {
   color: $text-tertiary;
   margin-top: 0.5rem;
   font-family: $font-mono;
-  
+
   a {
     color: $text-tertiary;
-    
+
     &:hover {
       color: $accent;
     }
@@ -273,7 +253,7 @@ a {
   background: $border-dark;
   border-radius: $radius;
   border: 2px solid $bg-card;
-  
+
   &:hover {
     background: $text-tertiary;
   }

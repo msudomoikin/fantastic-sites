@@ -3,17 +3,14 @@ import { getRandomInt } from "./helpers";
 const container = document.querySelector('.fir__container')!;
 const reloadBtn = document.querySelector('.fir__reload')!;
 
-container.addEventListener('click', () => {
-    createTree()
-})
 
-reloadBtn.addEventListener('click', () => {
+const resetTree = () => {
+    container.textContent = '';
     createTree()
-})
+}
 
 export function createTree() {
-    const treeHeight = 9
-
+    const treeHeight = 9;
     container.textContent += createTreeSegment(1, '*', '', treeHeight)
     container.textContent += createTreeSegment(3, '^', '❂', treeHeight)
     container.textContent += createTreeSegment(5, '^', '⚉', treeHeight)
@@ -45,3 +42,6 @@ function createTreeSegment(height: number, treeSymbol = '^', toy = 'o', treeHeig
     }
     return segment
 }
+
+container.addEventListener('click', resetTree)
+reloadBtn.addEventListener('click', resetTree)
