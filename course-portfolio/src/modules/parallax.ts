@@ -14,10 +14,9 @@ const clamp = (value: number, min: number, max: number): number => {
 }
 
 const updateParallax = (clientX: number) => {
-    // Get position relative to container
     const rect = container.getBoundingClientRect();
     const offsetX = clientX - rect.left;
-    
+
     // Center the effect: -50 to +50 range, but constrained
     const rawX = (offsetX / container.clientWidth - 0.5) * 100;
     const x = clamp(rawX, -60, 60);
@@ -45,7 +44,6 @@ const onTouchMove = (event: TouchEvent) => {
 export const setupParallax = async () => {
     const response = await fetch(asset);
     const svgText = await response.text();
-
     container.innerHTML = svgText;
 
     ship = container.querySelector('#SHIP')! as SVGElement;
@@ -56,14 +54,12 @@ export const setupParallax = async () => {
     clouds = container.querySelectorAll('#clouds > *') as NodeListOf<SVGElement>;
     sun = container.querySelector('#sun')! as SVGElement;
 
-    // Add animation class to clouds with randomized timing
+
     clouds.forEach(cloud => {
         cloud.classList.add('cloud-animate');
-        // Randomize duration between 10-20 seconds
+
         const duration = 10 + Math.random() * 10;
-        // Randomize delay between 0-5 seconds
         const delay = Math.random() * 5;
-        // Randomize direction (normal or reverse)
         const direction = Math.random() > 0.5 ? 'normal' : 'reverse';
 
         cloud.style.animationDuration = `${duration}s`;

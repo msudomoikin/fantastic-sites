@@ -45,6 +45,10 @@ $transition: 0.2s ease;
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 // === BASE STYLES ===
 body {
   background: $bg-base;
