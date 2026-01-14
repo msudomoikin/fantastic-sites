@@ -1,6 +1,6 @@
 import { getPosition } from "./helpers";
 
-const container = document.querySelector('.magnetic-lines__container')!;
+const container: HTMLElement = document.querySelector('.magnetic-lines__container')!;
 let lines: NodeListOf<HTMLElement>;
 
 const onMove = (x: number, y: number) => {
@@ -59,7 +59,6 @@ export const setupLines = () => {
     lines = document.querySelectorAll('.line');
 
     container.addEventListener('mousemove', onMouseMove);
-    container.addEventListener('touchmove', onTouchMove); // Добавляем поддержку тача
+    container.addEventListener('touchmove', onTouchMove);
     container.addEventListener('mouseleave', reset);
-    container.addEventListener('touchend', reset); // Сброс при отпускании пальца
-};
+    container.addEventListener('touchend', reset);
