@@ -1,0 +1,20 @@
+@use '../mixins';
+
+.magnetic-lines {
+    &__container {
+        @include mixins.sketch-container;
+        @include mixins.add-border;
+        display: flex;
+        gap: 5px;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+.line {
+    width: 1px;
+    height: 300px;
+    background-color: red;
+    transform-origin: center center;
+}

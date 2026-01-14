@@ -12,10 +12,11 @@ reloadBtn.addEventListener('click', randomize)
 
 export function createGrid() {
     container.innerHTML = ''
-    for (let i = 0; i < 130; i = i + 1) {
+    for (let i = 0; i < 110; i = i + 1) {
         let newElement = document.createElement('div')
         newElement.classList.add('break-dom__rectangle')
-        newElement.style.width = `${i * 2}px`
+        newElement.style.width = `${i * 1.5}px`
+
         const text = document.createElement('span')
         text.classList.add('break-dom__rectangle-text');
         text.textContent = String(i)
@@ -40,7 +41,7 @@ function randomize() {
     document.querySelectorAll('.break-dom__rectangle').forEach((rect, index) => {
         const rectElement = rect as HTMLElement
         colorize(rectElement, index)
-        rectElement.style.transform = `rotate3d(1, 1, 0, ${rotateMultiplayer * -index}deg)`
+        rectElement.style.transform = `rotate3d(0, 0, 1, ${rotateMultiplayer * index}deg)`
     });
 
 }

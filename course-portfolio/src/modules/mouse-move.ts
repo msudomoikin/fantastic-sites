@@ -1,3 +1,5 @@
+import { getPosition } from "./helpers";
+
 let mouseMoveContainer = document.querySelector('.mouse-move__container')!;
 let dotPermanent: HTMLElement = document.querySelector('.dot--perm')!;
 
@@ -32,13 +34,7 @@ const createDot = (x: number, y: number) => {
     oldY = newY
 }
 
-const getPosition = (event: MouseEvent | Touch, container: Element): { x: number, y: number } => {
-    const rect = container.getBoundingClientRect();
-    return {
-        x: event.clientX - rect.left,
-        y: event.clientY - rect.top
-    };
-}
+
 
 export const trackMouse = () => {
     mouseMoveContainer.addEventListener('mousemove', (event) => {

@@ -1,4 +1,4 @@
-import asset from '../../public/SVG/Asset 3.svg'
+import asset from '../../public/parallax.svg'
 
 const container: HTMLElement = document.querySelector('.parallax__container')!;
 let ship: SVGElement;
@@ -8,6 +8,7 @@ let isle_right_3rd: SVGElement;
 let isle_left_3rd: SVGElement;
 let clouds: NodeListOf<SVGElement>;
 let sun: SVGElement;
+let parallaxImage: HTMLElement;
 
 const clamp = (value: number, min: number, max: number): number => {
     return Math.max(min, Math.min(max, value));
@@ -27,6 +28,7 @@ const updateParallax = (clientX: number) => {
     isle_right_3rd.style.transform = `translate(${x * 0.3 + 30}px, 0px)`;
     isle_left_3rd.style.transform = `translate(${x * 0.3 - 30}px, 0px)`;
     sun.style.transform = `translate(${x * 0.08}px, 0px)`;
+    parallaxImage.style.transform = `translate(${rawX*.6 - 30}px, 0px)`;
 }
 
 const onMouseMove = (event: MouseEvent) => {
@@ -40,7 +42,6 @@ const onTouchMove = (event: TouchEvent) => {
     }
 }
 
-
 export const setupParallax = async () => {
     const response = await fetch(asset);
     const svgText = await response.text();
@@ -53,6 +54,7 @@ export const setupParallax = async () => {
     isle_left_3rd = container.querySelector('#isle_left_3rd')! as SVGElement;
     clouds = container.querySelectorAll('#clouds > *') as NodeListOf<SVGElement>;
     sun = container.querySelector('#sun')! as SVGElement;
+    parallaxImage = container.querySelector('.parallax__image')! as HTMLElement;
 
 
     clouds.forEach(cloud => {
@@ -67,7 +69,7 @@ export const setupParallax = async () => {
         cloud.style.animationDirection = direction;
     });
 
-    // Set initial transforms (x = 0, centered position)
+    //установить начальное положение
     const rect = container.getBoundingClientRect();
     updateParallax(rect.left + rect.width / 2);
 
