@@ -62,3 +62,4 @@ export const setupLines = () => {
     container.addEventListener('touchmove', onTouchMove);
     container.addEventListener('mouseleave', reset);
     container.addEventListener('touchend', reset);
+}
