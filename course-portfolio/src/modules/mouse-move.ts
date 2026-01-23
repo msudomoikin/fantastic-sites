@@ -1,16 +1,16 @@
-import { getPosition } from "./helpers";
+import { getPosition, kalmanFilter } from "./helpers";
 
 let mouseMoveContainer = document.querySelector('.mouse-move__container')!;
-let dotPermanent: HTMLElement = document.querySelector('.dot--perm')!;
+let permanentDot: HTMLElement = document.querySelector('.dot--permanent')!;
 
 const K = 0.08
-let oldX = 0
-let oldY = 0
+let oldX: number
+let oldY: number
 
 const createDot = (x: number, y: number) => {
 
-    let newX = x * K + oldX * (1 - K)
-    let newY = y * K + oldY * (1 - K)
+    let newX = kalmanFilter(K, x, oldX)
+    let newY = kalmanFilter(K, y, oldY)
 
     const dot = document.createElement('div');
     dot.classList.add('dot')
@@ -18,8 +18,8 @@ const createDot = (x: number, y: number) => {
     dot.style.top = `${newY + Math.random() * 20}px`
     dot.style.left = `${newX}px`
 
-    dotPermanent.style.top = `${newY + Math.random() * 20}px`
-    dotPermanent.style.left = `${newX}px`
+    permanentDot.style.top = `${newY + Math.random() * 20}px`
+    permanentDot.style.left = `${newX}px`
     mouseMoveContainer.append(dot)
 
     setTimeout(() => {
@@ -37,11 +37,21 @@ const createDot = (x: number, y: number) => {
 
 
 export const trackMouse = () => {
+
+    //setup init dot position
+    const dotRect = permanentDot.getBoundingClientRect()
+    const parentRect = permanentDot.parentElement!.getBoundingClientRect()
+    const dotInitCoords = { y: parentRect.height / 2 - dotRect.height / 2, x: parentRect.width / 2 - dotRect.width / 2 }
+    permanentDot.style.top = `${dotInitCoords.y}px`;
+    permanentDot.style.left = `${dotInitCoords.x}px`;
+    oldY = dotInitCoords.y
+    oldX = dotInitCoords.x
+
     mouseMoveContainer.addEventListener('mousemove', (event) => {
         const e = event as MouseEvent
         createDot(e.offsetX, e.offsetY)
     })
-    
+
     mouseMoveContainer.addEventListener('touchmove', (event) => {
         const e = event as TouchEvent
         e.preventDefault();

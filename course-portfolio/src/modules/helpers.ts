@@ -9,3 +9,11 @@ export const getPosition = (event: MouseEvent | Touch, container: Element): { x:
         y: event.clientY - rect.top
     };
 }
+
+export const clamp = (value: number, min: number, max: number): number => {
+    return Math.max(min, Math.min(max, value));
+}
+
+export const kalmanFilter = (coef:number, value:number, oldValue:number) => {
+   return value * coef + oldValue * (1 - coef)
+}
