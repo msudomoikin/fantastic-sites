@@ -1,0 +1,14 @@
+.section {
+    filter: grayscale(1);
+    transform: scale(0.8);
+    transition: .3s ease-in filter, .3s ease-out transform;
+    pointer-events: none;
+    touch-action: none;
+
+    &--awaken {
+        touch-action: all;
+        pointer-events: all;
+        transform: scale(1);
+        filter: grayscale(0);
+    }
+}

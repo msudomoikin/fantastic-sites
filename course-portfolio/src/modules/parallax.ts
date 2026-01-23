@@ -1,4 +1,5 @@
 import asset from '../../public/parallax.svg'
+import { clamp, kalmanFilter } from './helpers';
 
 const container: HTMLElement = document.querySelector('.parallax__container')!;
 let ship: SVGElement;
@@ -10,9 +11,8 @@ let clouds: NodeListOf<SVGElement>;
 let sun: SVGElement;
 let parallaxImage: HTMLElement;
 
-const clamp = (value: number, min: number, max: number): number => {
-    return Math.max(min, Math.min(max, value));
-}
+const K = 0.08
+let oldX = 0;
 
 const updateParallax = (clientX: number) => {
     const rect = container.getBoundingClientRect();
@@ -22,13 +22,17 @@ const updateParallax = (clientX: number) => {
     const rawX = (offsetX / container.clientWidth - 0.5) * 100;
     const x = clamp(rawX, -60, 60);
 
-    ship.style.transform = `translate(${x * 0.6}px, 0px)`;
-    firstPlane.style.transform = `translate(${x * 0.5}px, 0px) scale(1.03)`;
-    secondPlane.style.transform = `translate(${x * 0.4 - 30}px, 0px)`;
-    isle_right_3rd.style.transform = `translate(${x * 0.3 + 30}px, 0px)`;
-    isle_left_3rd.style.transform = `translate(${x * 0.3 - 30}px, 0px)`;
-    sun.style.transform = `translate(${x * 0.08}px, 0px)`;
-    parallaxImage.style.transform = `translate(${rawX*.6 - 30}px, 0px)`;
+    let newX = kalmanFilter(K, x, oldX)
+
+    ship.style.transform = `translate(${newX * 0.6}px, 0px)`;
+    firstPlane.style.transform = `translate(${newX * 0.5}px, 0px) scale(1.03)`;
+    secondPlane.style.transform = `translate(${newX * 0.4 - 30}px, 0px)`;
+    isle_right_3rd.style.transform = `translate(${newX * 0.3 + 30}px, 0px)`;
+    isle_left_3rd.style.transform = `translate(${newX * 0.3 - 30}px, 0px)`;
+    sun.style.transform = `translate(${newX * 0.08}px, 0px)`;
+    parallaxImage.style.transform = `translate(${rawX * .6 - 30}px, 0px)`;
+
+    oldX = newX
 }
 
 const onMouseMove = (event: MouseEvent) => {
@@ -59,7 +63,6 @@ export const setupParallax = async () => {
 
     clouds.forEach(cloud => {
         cloud.classList.add('cloud-animate');
-
         const duration = 10 + Math.random() * 10;
         const delay = Math.random() * 5;
         const direction = Math.random() > 0.5 ? 'normal' : 'reverse';
