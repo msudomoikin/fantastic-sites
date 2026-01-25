@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg"
-  xmlns:xlink="http://www.w3.org/1999/xlink" width="629" height="338" viewBox="8.5 8.9 654.2 372.1" preserveAspectRatio="xMidYMid slice" class="parallax__image">
+  xmlns:xlink="http://www.w3.org/1999/xlink" width="629" height="338" viewBox="8.5 8.9 654.2 372.1" preserveAspectRatio="xMidYMax slice" class="parallax__image">
   <defs>
     <linearGradient id="linear-gradient" x1="335.66" y1="169.17" x2="335.66" y2="-163.34" gradientUnits="userSpaceOnUse">
       <stop offset="0.02" stop-color="#ec7f70"/>

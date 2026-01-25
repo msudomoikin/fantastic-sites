@@ -1,4 +1,4 @@
-import { getPosition } from "./helpers";
+import { getPositionInParent } from "./helpers";
 
 const container: HTMLElement = document.querySelector('.magnetic-lines__container')!;
 let lines: NodeListOf<HTMLElement>;
@@ -24,9 +24,8 @@ const onTouchMove = (event: TouchEvent) => {
     event.preventDefault();
     if (event.touches.length > 0) {
         const touch = event.touches[0];
-        // Используем getPosition для получения координат относительно контейнера
-        const pos = getPosition(touch, container);
-        onMove(pos.x + container.getBoundingClientRect().left, pos.y + container.getBoundingClientRect().top);
+        const pos = getPositionInParent(touch, container);
+        onMove(pos.x, pos.y);
     }
 };
 

@@ -18,9 +18,15 @@
     }
 
     &__background-ufo {
+        width: 30%;
+        max-width: 300px;
         position: absolute;
         top: 170px;
         left: 150px;
+        transition: top 1s ease-in,
+        left 1s ease-in;
+
+
     }
 
     &__overlay {

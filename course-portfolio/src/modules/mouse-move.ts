@@ -1,4 +1,4 @@
-import { getPosition, kalmanFilter } from "./helpers";
+import { getPositionInParent, kalmanFilter } from "./helpers";
 
 let mouseMoveContainer = document.querySelector('.mouse-move__container')!;
 let permanentDot: HTMLElement = document.querySelector('.dot--permanent')!;
@@ -56,7 +56,7 @@ export const trackMouse = () => {
         const e = event as TouchEvent
         e.preventDefault();
         if (e.touches.length > 0) {
-            const pos = getPosition(e.touches[0], mouseMoveContainer);
+            const pos = getPositionInParent(e.touches[0], mouseMoveContainer);
             createDot(pos.x, pos.y)
         }
     }, { passive: false })

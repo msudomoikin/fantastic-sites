@@ -1,37 +1,54 @@
+import { getElementCenter, getPositionInParent } from "./helpers";
+
 const pointer: HTMLElement = document.querySelector('.xray__pointer')!;
-const xrayContainer = document.querySelector('.xray__container')!;
+const xrayContainer: HTMLElement = document.querySelector('.xray__container')!;
 const ufo: HTMLElement = document.querySelector('.xray__background-ufo')!;
+let ufoCenter = { x: 0, y: 0 };
+let ufoFound = false
+type CoordObj = { x: number, y: number };
 
 export const setupXray = () => {
     trackXray();
     placeUfo();
 }
 
-const updatePointerPosition = (clientX: number, clientY: number) => {
-    const rect = xrayContainer.getBoundingClientRect();
-    const offsetX = clientX - rect.left;
-    const offsetY = clientY - rect.top;
-    
-    pointer.style.left = `${offsetX}px`
-    pointer.style.top = `${offsetY}px`
+const updatePointerPosition = (coordsObj: CoordObj) => {
+
+    pointer.style.left = `${coordsObj.x}px`
+    pointer.style.top = `${coordsObj.y}px`
+
+
+    if (!ufoFound && Math.abs(ufoCenter.x - coordsObj.x) < 70 && Math.abs(ufoCenter.y - coordsObj.y) < 70) {
+        ufoFound = true;
+        placeUfo();
+    }
 }
 
 const trackXray = () => {
     xrayContainer.addEventListener('mousemove', (event) => {
         const e = event as MouseEvent
-        updatePointerPosition(e.clientX, e.clientY)
+        updatePointerPosition(getPositionInParent(e, xrayContainer))
     })
-    
+
+
+
     xrayContainer.addEventListener('touchmove', (event) => {
         const e = event as TouchEvent
         e.preventDefault();
         if (e.touches.length > 0) {
-            updatePointerPosition(e.touches[0].clientX, e.touches[0].clientY)
+            updatePointerPosition(getPositionInParent(e.touches[0], xrayContainer))
         }
     }, { passive: false })
 }
 
 const placeUfo = () => {
-    ufo.style.top = `${Math.random() * 80}%`
-    ufo.style.left = `${Math.random() * 80}%`
+    ufoFound = true;
+    ufo.style.top = `${Math.random() * 50}%`
+    ufo.style.left = `${Math.random() * 70}%`
+
+    setTimeout(() => {
+        ufoCenter = getElementCenter(ufo, xrayContainer);
+        ufoFound = false;
+    }, 1000);
+
 }

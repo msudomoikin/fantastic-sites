@@ -1,5 +1,5 @@
-import asset from '../../public/parallax.svg'
-import { clamp, kalmanFilter } from './helpers';
+import parralaxSvg from '../../public/parallax.svg'
+import { clamp, getPositionInParent, kalmanFilter } from './helpers';
 
 const container: HTMLElement = document.querySelector('.parallax__container')!;
 let ship: SVGElement;
@@ -15,39 +15,36 @@ const K = 0.08
 let oldX = 0;
 
 const updateParallax = (clientX: number) => {
-    const rect = container.getBoundingClientRect();
-    const offsetX = clientX - rect.left;
-
     // Center the effect: -50 to +50 range, but constrained
-    const rawX = (offsetX / container.clientWidth - 0.5) * 100;
+    const rawX = (clientX / container.clientWidth - 0.5) * 100;
     const x = clamp(rawX, -60, 60);
 
     let newX = kalmanFilter(K, x, oldX)
 
-    ship.style.transform = `translate(${newX * 0.6}px, 0px)`;
-    firstPlane.style.transform = `translate(${newX * 0.5}px, 0px) scale(1.03)`;
-    secondPlane.style.transform = `translate(${newX * 0.4 - 30}px, 0px)`;
-    isle_right_3rd.style.transform = `translate(${newX * 0.3 + 30}px, 0px)`;
-    isle_left_3rd.style.transform = `translate(${newX * 0.3 - 30}px, 0px)`;
-    sun.style.transform = `translate(${newX * 0.08}px, 0px)`;
+    ship.style.transform = `translate(${newX * 0.4}px, 0px)`;
+    firstPlane.style.transform = `translate(${newX * 0.8}px, 0px) scale(1.03)`;
+    secondPlane.style.transform = `translate(${newX * 0.2 - 30}px, 0px)`;
+    isle_right_3rd.style.transform = `translate(${newX * 0.1 + 30}px, 0px)`;
+    isle_left_3rd.style.transform = `translate(${newX * 0.1 - 30}px, 0px)`;
+    sun.style.transform = `translate(${newX * 0.03}px, 0px)`;
     parallaxImage.style.transform = `translate(${rawX * .6 - 30}px, 0px)`;
 
     oldX = newX
 }
 
 const onMouseMove = (event: MouseEvent) => {
-    updateParallax(event.clientX);
+    updateParallax(getPositionInParent(event, container).x);
 }
 
 const onTouchMove = (event: TouchEvent) => {
     event.preventDefault();
     if (event.touches.length > 0) {
-        updateParallax(event.touches[0].clientX);
+        updateParallax(getPositionInParent(event.touches[0], container).x);
     }
 }
 
 export const setupParallax = async () => {
-    const response = await fetch(asset);
+    const response = await fetch(parralaxSvg);
     const svgText = await response.text();
     container.innerHTML = svgText;
 

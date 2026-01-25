@@ -25,6 +25,7 @@ export function createGrid() {
         colorize(newElement, i)
         container.append(newElement)
     }
+    randomize()
 }
 
 function colorize(element: HTMLElement, i: number) {
@@ -45,5 +46,3 @@ function randomize() {
     });
 
 }
-
-createGrid()
