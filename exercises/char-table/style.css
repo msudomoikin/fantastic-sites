@@ -4,17 +4,28 @@ body {
     min-height: 100dvh;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+}
+
+.letter {
+    font-size: 164px;
+    position: absolute;
+    color: orangered;
+    font-family: monospace;
+
+    line-height: 1;
+    min-height: 64px;;
 }
 
 .stub {
     height: 700px;
 }
 
-
 .wrapper {
     height: 500px;
     overflow: scroll;
-    border: 1px red solid;
+    border: 1px solid orangered;
+    padding: 20px;
 }
 
 .description {
@@ -39,8 +50,7 @@ body {
     border: 1px solid cyan;
     color: cyan;
     font-family: monospace;
-    /* font-size: 28px; */
-    font-size: 10px;
+    font-size: 28px;
     transition: all .3s ease;
 }
 

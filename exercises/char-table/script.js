@@ -1,11 +1,15 @@
 let charsContainer = document.querySelector('.chars');
 let wrapper = document.querySelector('.wrapper');
+let letterHeading = document.querySelector('.letter');
+
 let allChars = [];
 let tableCells = [];
+let lastIndex = 0;
+
 
 //create thresholds array
 const thresholds = [...Array(101).keys()].map(num => num / 100)
-
+console.log(thresholds);
 // create chars table
 for (var i = 33; i < 127; i++)
     allChars.push(String.fromCharCode(i));
@@ -21,35 +25,55 @@ allChars.forEach(char => {
 const wrapperHeight = wrapper.getBoundingClientRect().height
 const charsContainerHeight = charsContainer.getBoundingClientRect().height
 
-const hightlightCell = (element) => {
+const highlightCell = (element) => {
+    if (!element) return;
     element.classList.add('highlight')
     setTimeout(() => {
         element.classList.remove('highlight')
     }, 300)
 }
-console.log(wrapperHeight, charsContainerHeight);
-
 
 const observerOptions = {
     root: wrapper,
-    //сдвигаем область захвата вниз до середины обертки и делаем её высотой с таблицу символов
-    rootMargin: `-${wrapperHeight / 2}px 0px ${charsContainerHeight}px 0px`,
+    //сдвигаем область захвата вниз до середины обертки
+    // и делаем её высотой с таблицу символов (+небольшой запас, чтобы не было дребезга)
+    rootMargin: `-${(wrapperHeight) / 2}px 0px ${charsContainerHeight + 100}px 0px`,
     scrollMargin: `0px`,
     threshold: thresholds,
 };
 
-console.log(thresholds);
-
 const observerCallback = (entries, observer) => {
     entries.forEach(entry => {
-        console.log(entry);
+        //пропускаем первое срабатывание колбека
+        if (entry.time < 1500) return;
+
+        //нормализация значения прокрутки
+        let normalizedRatio = (entry.intersectionRatio - 0.01) / (1.0 - 0.01);
+        if (normalizedRatio < 0) normalizedRatio = 0;
+
+        //очищаем большую букву на границах захвата
+        if (normalizedRatio === 1 || normalizedRatio === 0) {
+            letterHeading.textContent = '';
+            return;
+        };
+
         // инверсия диапазона!
-        let invertedRatio = 1 - entry.intersectionRatio;
-        console.log(invertedRatio.toFixed(2));
-        //ищем нужную ячейку и подсвечиваем её
-        let currentCellIndex = Math.floor(invertedRatio * tableCells.length)
-        let currentCell = document.querySelector(`.table-cell-${currentCellIndex}`);
-        if (currentCell) hightlightCell(currentCell);
+        let invertedRatio = 1 - normalizedRatio;
+
+        //получаем индекс ячейки которую нужно подсветить
+        let index = Math.floor(invertedRatio * tableCells.length)
+
+        const start = Math.min(lastIndex, index);
+        const end = Math.max(lastIndex, index);
+
+        for (let i = start; i <= end; i++) {
+            console.log(start, end);
+
+            highlightCell(tableCells[i]);
+        }
+
+        letterHeading.textContent = tableCells[index].textContent;
+        lastIndex = index;
     })
 };
 
