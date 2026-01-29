@@ -1,9 +1,24 @@
 body {
     background: #1b1b1b;
+    display: flex;
+    min-height: 100dvh;
+    align-items: center;
+    justify-content: center;
 }
 
 .stub {
     height: 700px;
+}
+
+
+.wrapper {
+    height: 500px;
+    overflow: scroll;
+    border: 1px red solid;
+}
+
+.description {
+    height: 100%;
 }
 
 .chars {
@@ -24,7 +39,8 @@ body {
     border: 1px solid cyan;
     color: cyan;
     font-family: monospace;
-    font-size: 28px;
+    /* font-size: 28px; */
+    font-size: 10px;
     transition: all .3s ease;
 }
 
