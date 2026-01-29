@@ -63,13 +63,23 @@ const observerCallback = (entries, observer) => {
         //получаем индекс ячейки которую нужно подсветить
         let index = Math.floor(invertedRatio * tableCells.length)
 
+        //"доводчик", чтобы подсветить все ячейки 
         const start = Math.min(lastIndex, index);
         const end = Math.max(lastIndex, index);
+        const isForward = index > lastIndex;
 
-        for (let i = start; i <= end; i++) {
-            console.log(start, end);
+        
+        for (let i = 0; i <= (end - start); i++) {
+            // Вычисляем индекс ячейки в зависимости от направления
+            // Если идем вперед, то это start + i, если назад — end - i
+            const cellIndex = isForward ? start + i : end - i;
 
-            highlightCell(tableCells[i]);
+            // Добавляем нарастающую задержку (например, 20мс на каждую букву)
+            setTimeout(() => {
+                if (tableCells[cellIndex]) {
+                    highlightCell(tableCells[cellIndex]);
+                }
+            }, i * 100); // Каждая следующая ячейка в пачке подождет чуть дольше
         }
 
         letterHeading.textContent = tableCells[index].textContent;
