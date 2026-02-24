@@ -1,42 +1,47 @@
 let charsContainer = document.querySelector('.chars');
 let wrapper = document.querySelector('.wrapper');
-let letterHeading = document.querySelector('.letter');
+let bigLetter = document.querySelector('.big-letter');
 
 let allChars = [];
 let tableCells = [];
 let lastIndex = 0;
 
-
-//create thresholds array
+//массив порогов для срабатывания observer
 const thresholds = [...Array(101).keys()].map(num => num / 100)
-console.log(thresholds);
-// create chars table
-for (var i = 33; i < 127; i++)
-    allChars.push(String.fromCharCode(i));
 
-allChars.forEach(char => {
+// создаем таблицу символов, 33-126 это ascii-коды отображаемых символов + 2 ячейки с неотображаемыми символами,
+// чтобы лучше считывались сиволы на границах захвата
+// https://learn.parallax.com/reference/ascii-table-0-127/#:~:text=The%20numbers%2032%E2%80%93126%20correspond,%E2%80%93255%20(not%20shown).
+for (var i = 32; i < 128; i++) allChars.push(String.fromCharCode(i));
+
+
+
+allChars.forEach((char, index) => {
     let charElement = document.createElement('div');
-    charElement.classList.add('char', 'table-cell-' + allChars.indexOf(char));
+    charElement.classList.add('char', 'table-cell-' + index);
     charElement.textContent = char;
     charsContainer.appendChild(charElement);
     tableCells.push(charElement);
 });
 
+// размеры таблицы символов и родителя
 const wrapperHeight = wrapper.getBoundingClientRect().height
 const charsContainerHeight = charsContainer.getBoundingClientRect().height
 
+// подсветка ячейки таблицы
 const highlightCell = (element) => {
     if (!element) return;
+    if (element.classList.contains('highlight')) return;
     element.classList.add('highlight')
     setTimeout(() => {
         element.classList.remove('highlight')
-    }, 300)
+    }, 400)
 }
 
 const observerOptions = {
     root: wrapper,
-    //сдвигаем область захвата вниз до середины обертки
-    // и делаем её высотой с таблицу символов (+небольшой запас, чтобы не было дребезга)
+    // сдвигаем область захвата вниз, до середины обертки
+    // и делаем её высотой с таблицу символов +небольшой запас, чтобы не было дребезга
     rootMargin: `-${(wrapperHeight) / 2}px 0px ${charsContainerHeight + 100}px 0px`,
     scrollMargin: `0px`,
     threshold: thresholds,
@@ -44,60 +49,58 @@ const observerOptions = {
 
 const observerCallback = (entries, observer) => {
     entries.forEach(entry => {
-        //пропускаем первое срабатывание колбека
+        //пропускаем первое срабатывание
         if (entry.time < 1500) return;
 
-        //нормализация значения прокрутки
-        let normalizedRatio = (entry.intersectionRatio - 0.01) / (1.0 - 0.01);
-        if (normalizedRatio < 0) normalizedRatio = 0;
+        // приводим значение смещения к сотым долям
+        let normalizedRatio = entry.intersectionRatio.toFixed(2)
+        console.log(normalizedRatio);
 
-        //очищаем большую букву на границах захвата
-        if (normalizedRatio === 1 || normalizedRatio === 0) {
-            letterHeading.textContent = '';
+        //очищаем большой символ на границах захвата
+        if (normalizedRatio == 1.00 || normalizedRatio == 0.00) {
+            bigLetter.textContent = '';
             return;
         };
 
-        // инверсия диапазона!
+        // математическая магия,
+        // переворачиваем значение смещения
+        // и получаем индекс ячейки
         let invertedRatio = 1 - normalizedRatio;
-
-        //получаем индекс ячейки которую нужно подсветить
         let index = Math.floor(invertedRatio * tableCells.length)
 
-        //"доводчик", чтобы подсветить все ячейки 
-        const start = Math.min(lastIndex, index);
-        const end = Math.max(lastIndex, index);
-        const isForward = index > lastIndex;
-
-        
-        for (let i = 0; i <= (end - start); i++) {
-            // Вычисляем индекс ячейки в зависимости от направления
-            // Если идем вперед, то это start + i, если назад — end - i
-            const cellIndex = isForward ? start + i : end - i;
-
-            // Добавляем нарастающую задержку (например, 20мс на каждую букву)
-            setTimeout(() => {
-                if (tableCells[cellIndex]) {
-                    highlightCell(tableCells[cellIndex]);
+        // "Доводчик" чтобы подсвечивалось без пропусков.
+        if (lastIndex <= index) {
+            for (let i = lastIndex; i < index; i++) {
+                if (tableCells[i]) {
+                    highlightCell(tableCells[i]);
+                    bigLetter.textContent = tableCells[i].textContent
                 }
-            }, i * 100); // Каждая следующая ячейка в пачке подождет чуть дольше
+            }
         }
 
-        letterHeading.textContent = tableCells[index].textContent;
-        lastIndex = index;
+        if (lastIndex >= index) {
+            for (let i = lastIndex; i > index; i--) {
+                if (tableCells[i]) {
+                    highlightCell(tableCells[i]);
+                    bigLetter.textContent = tableCells[i].textContent
+                }
+            }
+        }
+
+        lastIndex = index
     })
 };
-
 
 const observer = new IntersectionObserver(observerCallback, observerOptions)
 observer.observe(charsContainer)
 
-// dodo stuff
-
+// dodo reference
+// https://brandbook.dodopizza.info/#!design/style
 
 // $('.table-cell.1').addClass('extrabold');
 // $('.table-letter').show();
 
-// // показываю и прячу огромную букву на фоне, когда таблица в экране
+// показываю и прячу огромную букву на фоне, когда таблица в экране
 // const charTable = [].slice.call(
 //     document.querySelectorAll('.char')
 // );
@@ -108,9 +111,9 @@ observer.observe(charsContainer)
 //     (entries) => {
 //         entries.forEach(entry => {
 //             if (entry.isIntersecting) {
-//                 // $('.table-letter').show(); тут показать большую букву
+// $('.table-letter').show(); тут показать большую букву
 
-//                 // внутри обсервера, чтобы до этого не считалась
+// внутри обсервера, чтобы до этого не считалась
 //                 if (window.matchMedia('(width < 768px)').matches) {
 //                     const tableCell = document.querySelector('.table-cell-0');
 //                     tableCell.classList.add('highlight');
