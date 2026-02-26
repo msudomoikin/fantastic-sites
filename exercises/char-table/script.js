@@ -14,8 +14,6 @@ const thresholds = [...Array(101).keys()].map(num => num / 100)
 // https://learn.parallax.com/reference/ascii-table-0-127/#:~:text=The%20numbers%2032%E2%80%93126%20correspond,%E2%80%93255%20(not%20shown).
 for (var i = 32; i < 128; i++) allChars.push(String.fromCharCode(i));
 
-
-
 allChars.forEach((char, index) => {
     let charElement = document.createElement('div');
     charElement.classList.add('char', 'table-cell-' + index);
@@ -68,22 +66,14 @@ const observerCallback = (entries, observer) => {
         let index = Math.floor(invertedRatio * tableCells.length)
 
         // "Доводчик" чтобы подсвечивалось без пропусков.
-        if (lastIndex <= index) {
-            for (let i = lastIndex; i < index; i++) {
-                if (tableCells[i]) {
-                    highlightCell(tableCells[i]);
-                    bigLetter.textContent = tableCells[i].textContent
-                }
-            }
+        for (let i = lastIndex; i < index; i++) {
+            highlightCell(tableCells[i]);
+            bigLetter.textContent = tableCells[i].textContent
         }
 
-        if (lastIndex >= index) {
-            for (let i = lastIndex; i > index; i--) {
-                if (tableCells[i]) {
-                    highlightCell(tableCells[i]);
-                    bigLetter.textContent = tableCells[i].textContent
-                }
-            }
+        for (let i = lastIndex; i > index; i--) {
+            highlightCell(tableCells[i]);
+            bigLetter.textContent = tableCells[i].textContent
         }
 
         lastIndex = index
@@ -91,7 +81,6 @@ const observerCallback = (entries, observer) => {
 };
 
 charsContainer.addEventListener('mousemove', (e) => {
-    console.log(e);
     if (e.target.classList.contains('char')) {
         highlightCell(e.target);
         bigLetter.textContent = e.target.textContent
