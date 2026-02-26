@@ -54,7 +54,6 @@ const observerCallback = (entries, observer) => {
 
         // приводим значение смещения к сотым долям
         let normalizedRatio = entry.intersectionRatio.toFixed(2)
-        console.log(normalizedRatio);
 
         //очищаем большой символ на границах захвата
         if (normalizedRatio == 1.00 || normalizedRatio == 0.00) {
@@ -91,6 +90,13 @@ const observerCallback = (entries, observer) => {
     })
 };
 
+charsContainer.addEventListener('mousemove', (e) => {
+    console.log(e);
+    if (e.target.classList.contains('char')) {
+        highlightCell(e.target);
+        bigLetter.textContent = e.target.textContent
+    }
+});
 const observer = new IntersectionObserver(observerCallback, observerOptions)
 observer.observe(charsContainer)
 
