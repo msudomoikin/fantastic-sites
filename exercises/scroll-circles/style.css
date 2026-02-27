@@ -1,0 +1,102 @@
+body {
+  background: #1b1b1b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-family: sans-serif;
+  color: white;
+  font-size: 16px;
+  margin: 0;
+}
+
+.stub {
+  height: 100dvh;
+  display: grid;
+  place-content: center;
+}
+
+.circles-container {
+  position: relative;
+  border: 1px solid white;
+  border-radius: 20px;
+  height: 500px;
+  width: 500px;
+  cursor: pointer;
+}
+
+.sign {
+  font-size: 200px;
+  position: relative;
+}
+
+.circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: red;
+  position: absolute;
+  user-select: none;
+  --speed-factor: calc((var(--i) / var(--total)) + 0.1);
+  width: calc(var(--size) * 1px);
+  height: calc(var(--size) * 1px);
+  /* Убираем top/left из JS, используем их здесь */
+  left: var(--start-x);
+  top: var(--start-y);
+
+  background: radial-gradient(
+    calc((var(--size) - (var(--size) / 10)) * 1px) at center var(--gradient-pos),
+    white 5%,
+    grey 35%,
+    rgb(17, 17, 17) 60%
+  );
+  border-radius: 50%;
+  transform: translateY(
+    calc((var(--move-distance) * var(--speed-factor)) * 1px)
+  );
+
+  /* Привязываем анимацию к скроллу всей страницы */
+  animation:
+    moveGradient linear,
+    movePosition ease-in-out;
+  animation-timeline: scroll(root);
+  animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: filter 0.3s ease;
+}
+
+/* css magic!! */
+
+@property --size {
+  syntax: "<number>"; /* или <percentage> */
+  inherits: false;
+  initial-value: 70;
+}
+
+@property --move-distance {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 70;
+}
+
+@property --gradient-pos {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+
+@keyframes moveGradient {
+  from {
+    --gradient-pos: 0%;
+  }
+  to {
+    --gradient-pos: 100%;
+  }
+}
+@keyframes movePosition {
+  from {
+    --move-distance: 0;
+  }
+  to {
+    --move-distance: -800;
+  }
+}
