@@ -1,41 +1,36 @@
 let circlesContainer = document.querySelector(".circles-container");
-let totalCircles = 10;
+const totalCircles = 5;
+const maxBlur = 6;
 
-const container = document.querySelector('.circles-container');
+const containerFront = document.querySelector('.circles-container-front');
+const containerBack = document.querySelector('.circles-container-back');
 
-generateCircles();
+generateCircles(containerFront);
+generateCircles(containerBack);
 
-function generateCircles() {
-    container.innerHTML = ''; // Очищаем контейнер перед генерацией новых кругов
+document.addEventListener('click', () => {
+    generateCircles(containerFront);
+    generateCircles(containerBack, true);
+})
+
+function generateCircles(parentElement, blur = false) {
+    parentElement.innerHTML = '';
     for (let i = 0; i < totalCircles; i++) {
         const circle = document.createElement('div');
-        circle.className = 'circle';// Устанавливаем случайные значения через инлайновые переменные
+        circle.className = 'circle';
 
-        const size = Math.random() **2 * 200 + 50
+        const size = Math.random() ** 2 * 200 + 50
+        const currentBlur = blur ? maxBlur - (i * (maxBlur / (totalCircles - 1))) : 0;
 
         circle.style.setProperty('--i', i);
         circle.style.setProperty('--total', totalCircles);
-
-        const maxBlur = 6;
-        const currentBlur = maxBlur - (i * (maxBlur / (totalCircles - 1)));
-
-        // 2. Устанавливаем статичные параметры через JS
-        circle.style.filter = `blur(${currentBlur}px)`;
-
-        circle.style.setProperty('--start-x', `${Math.random() ** 3 * 90}%`);
+        circle.style.setProperty('--start-x', `${Math.random() ** 3 * 100}%`);
         circle.style.setProperty('--start-y', `${Math.random() ** 3 * 100}%`);
         circle.style.setProperty('--size', size);
-        container.appendChild(circle);
-        circle.textContent = i + 1; // Добавляем текст внутри круга
+        circle.style.filter = `blur(${currentBlur}px)`;
 
-        circle.addEventListener('mouseenter', () => {
-            circle.style.setProperty('filter', `blur(${0}px)`);
-        });
-        circle.addEventListener('mouseleave', () => {
-            circle.style.setProperty('filter', `blur(${currentBlur}px)`);
-        });
+        circle.textContent = i + 1;
+
+        parentElement.appendChild(circle);
     }
-
 }
-
-container.addEventListener('click', generateCircles);
