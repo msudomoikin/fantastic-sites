@@ -6,6 +6,16 @@
 // Optional: modern bold display + mono for “terminal” UI
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
+@font-face {
+  font-family: 'Quota';
+  src: url('Quota-BoldItalicCond.woff2') format('woff2'),
+    url('Quota-BoldItalicCond.woff') format('woff');
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+
 // === VARIABLES ===
 $bg-base: #ede9e3; // Warm off-white, like old plastic
 $bg-card: #ddd7d1; // Slightly darker for cards
@@ -88,7 +98,15 @@ h1 {
   color: $text-primary;
   line-height: 1.02;
   text-transform: uppercase;
-  letter-spacing: -0.045em;
+  // letter-spacing: -0.045em;
+  font-family: 'Quota';
+  font-size: clamp(1.6vw + 1rem, 2vw + 2rem, 1.6vw + 2.5rem);
+
+    @media (max-width: 320px) {
+    font-size: 36px;
+  }
+
+
 
   &::after {
     content: '';
@@ -108,12 +126,11 @@ h2 {
   text-transform: uppercase;
   letter-spacing: 0.14em;
   padding-bottom: 0;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   border-bottom: none;
   font-variant-numeric: tabular-nums;
 }
 
-// Sketch numbering (0, 1, 2...) before each section title
 main {
   counter-reset: sketch -1;
 }
