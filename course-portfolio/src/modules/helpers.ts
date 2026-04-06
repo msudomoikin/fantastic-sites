@@ -35,3 +35,10 @@ export const getElementCenter = (element: HTMLElement, parent?: HTMLElement): { 
         y: elementRect.top - parentRect.top + elementRect.height / 2
     };
 }
+
+export const getScrollProgress = (element: HTMLElement): number => {
+    const rect = element.getBoundingClientRect();
+    const progress = (window.innerHeight - rect.y) / (window.innerHeight + rect.height);
+
+    return progress;
+};
