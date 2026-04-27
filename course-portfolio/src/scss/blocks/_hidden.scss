@@ -1,0 +1,11 @@
+.hidden {
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+	position: absolute;
+	margin: -1px;
+	padding: 0;
+	border: 0;
+	clip-path: inset(50%);
+	white-space: nowrap;
+}

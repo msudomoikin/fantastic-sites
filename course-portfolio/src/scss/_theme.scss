@@ -4,7 +4,7 @@
 // ============================================
 
 // Optional: modern bold display + mono for “terminal” UI
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap;family=Manrope:wght@200..800&display=swap');
 
 @font-face {
   font-family: 'Quota';
@@ -17,23 +17,26 @@
 
 
 // === VARIABLES ===
-$bg-base: #ede9e3; // Warm off-white, like old plastic
-$bg-card: #ddd7d1; // Slightly darker for cards
-$bg-inset: #d2ccc6; // Inset/pressed areas
+$bg-base: #5d5d5d; // Warm off-white, like old plastic
+$bg-card: #d5d5d5; // Slightly darker for cards
+$bg-inset: #d5d5d5; // Inset/pressed areas
 
 $text-primary: #2f2d2a; // Warm near-black (still soft)
-$text-secondary: #5f5a54; // Muted text
+$text-secondary: #141827; // Muted text
 $text-tertiary: #8f887f; // Captions, hints
+$text-blue: #141827;
+$text-white: #d5d5d5;
 
-$accent: #c24d33; // Braun-style warm red/orange
 
-$accent-hover: #9f3f2a;
+$accent: #141827; // Braun-style warm red/orange
+
+$accent-hover: #141827;
 
 $border-color: #bdb7b0;
 $border-dark: #9f9a93;
 
 $font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', 'Consolas', monospace;
-$font-display: 'Space Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
+$font-display: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
 
 $border-subtle: 1px solid $border-color;
 $border-medium: 2px solid $border-dark;
@@ -63,16 +66,13 @@ html {
 body {
   background: $bg-base;
   // Subtle “industrial” texture (very low contrast)
-  background-image:
-    radial-gradient(rgba($text-primary, 0.05) 0.8px, transparent 0.8px);
-  background-size: 26px 26px;
   color: $text-primary;
   font-family: $font-display;
   line-height: 1.6;
   // Global type scale (min 16px on small screens)
   font-size: clamp(16px, 1.2vw + 12px, 18px);
-  -webkit-font-smoothing: antialiased;
-  text-rendering: geometricPrecision;
+  // -webkit-font-smoothing: antialiased;
+  // text-rendering: geometricPrecision;
 }
 
 @media (max-width: 576px) {
@@ -92,6 +92,8 @@ h3 {
   font-family: $font-display;
   font-weight: 700;
   letter-spacing: -0.03em;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 h1 {
@@ -100,35 +102,26 @@ h1 {
   text-transform: uppercase;
   // letter-spacing: -0.045em;
   font-family: 'Quota';
-  font-size: clamp(1.6vw + 1rem, 2vw + 2rem, 1.6vw + 2.5rem);
-
-    @media (max-width: 320px) {
-    font-size: 36px;
-  }
+  text-align: left;
 
 
-
-  &::after {
-    content: '';
-    display: block;
-    width: 100%;
-    height: 4px;
-    background: $accent;
-    margin-top: 0.75rem;
-  }
 }
 
 h2 {
   font-family: $font-mono;
-  font-size: clamp(1.25rem, 1.6vw + 0.95rem, 1.85rem);
+  font-size: 39px;
   font-weight: 700;
-  color: $text-primary;
+  color: $text-white;
   text-transform: uppercase;
   letter-spacing: 0.14em;
   padding-bottom: 0;
   margin-bottom: 2rem;
   border-bottom: none;
   font-variant-numeric: tabular-nums;
+
+  @media screen and (max-width: 425px) {
+    font-size: 30px;
+  }
 }
 
 main {
@@ -141,7 +134,8 @@ main>section {
 
 main>section h2::before {
   content: counter(sketch) ' - ';
-  color: rgba($text-tertiary, 0.95);
+  color: #d5d5d5;
+  font-size: smaller;
   font-weight: 500;
   letter-spacing: 0.08em;
   margin-right: 0.9rem;
