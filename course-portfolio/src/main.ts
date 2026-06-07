@@ -19,8 +19,12 @@ setupScrollSpy()
 
 
 window.addEventListener('load', (event) => {
-  console.log('All resources finished loading!');
-  fitFont('.header__container', '.header__text');
+});
+
+document.fonts.ready.then(() => {
+    console.log('All fonts have loaded');
+    fitFont('.header__container', '.header__text');
+
 });
 
 window.addEventListener('resize', () => fitFont('.header__container', '.header__text'))
