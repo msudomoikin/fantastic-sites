@@ -1,0 +1,79 @@
+html {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #111;
+}
+
+.screen {
+  position: relative;
+  transform-style: preserve-3d;
+  margin: 0 auto;
+}
+
+.screen--4 {
+  width: 280px;
+  height: 180px;
+  transform: perspective(600px) rotateY(-12deg) skew(4deg, 2deg);
+}
+
+.screen--1 {
+  width: 320px;
+  height: 200px;
+  transform: perspective(600px) rotateY(10deg) skew(-5deg, 3deg);
+}
+
+.screen--3 {
+  width: 260px;
+  height: 150px;
+  transform: perspective(600px) rotateX(8deg) skew(3deg, -4deg);
+}
+
+.screen--2 {
+  width: 340px;
+  height: 220px;
+  transform: perspective(600px) rotateX(-6deg) skew(-2deg, 5deg);
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  cursor: pointer;
+  font-family: Arial, sans-serif;
+  backdrop-filter: blur(5px);
+}
+
+.video-container {
+  width: 640px;
+  height: 360px;
+  background-color: black;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  gap: 40px;
+  grid-template-columns: 1fr 1fr;
+}
+
+@media (min-width: 1200px) {
+  .video-container {
+    flex-direction: row;
+  }
+}
