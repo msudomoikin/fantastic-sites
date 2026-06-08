@@ -1,0 +1,116 @@
+// ============================================ //
+// THEME: Nothing "Milk" Glass Aesthetic        //
+// Industrial Light + Transparency + Red Accent //
+// ============================================ //
+
+// === VARIABLES (Nothing Light Mode) ===
+$bg-base: #f7f7f7;         // Светлый "молочный" пластик
+$bg-card: rgba(255, 255, 255, 0.6); // Полупрозрачное стекло
+$bg-inset: #eeeeee;        
+$text-primary: #000000;    // Глубокий черный для контраста
+$text-secondary: #666666;  
+$text-tertiary: #999999;   
+$accent: #D71921;          // Тот самый красный элемент (как кнопка записи)
+$accent-blue: #0055FF;     // Дополнительный акцент (как в Special Edition)
+$border-color: #e0e0e0;    
+$border-dark: #cccccc;
+$radius: 32px;             // Крупные "мягкие" углы корпуса
+$transition: 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+
+:root {
+  --bg-base: #{$bg-base};
+  --text-primary: #{$text-primary};
+  --accent: #{$accent};
+}
+
+// === BASE STYLES ===
+body {
+  background: $bg-base;
+  // Едва заметная сетка из точек, имитирующая текстуру под стеклом
+  background-image: radial-gradient(rgba(0,0,0,0.05) 1px, transparent 1px);
+  background-size: 24px 24px;
+  color: $text-primary;
+  font-family: 'Space Grotesk', sans-serif; // Твой шрифт
+  -webkit-font-smoothing: antialiased;
+}
+
+// === TYPOGRAPHY ===
+h1 {
+  font-family: 'Quota'; // Сохраняем твой шрифт
+  color: $text-primary;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  letter-spacing: -0.04em;
+  margin-bottom: 1.5rem;
+  
+  &::after {
+    background: $text-primary; // Линия теперь черная и техничная
+    height: 6px;
+    width: 40px;
+    border-radius: 10px;
+  }
+}
+
+h2 {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.85rem;
+  background: #000; // Черная "плашка" как на компонентах Nothing
+  color: #fff;
+  padding: 4px 12px;
+  display: inline-block;
+  border-radius: 4px;
+  letter-spacing: 0.1em;
+}
+
+// === CARDS (The "Hardware" Look) ===
+.sketch-container {
+  background: $bg-card;
+  backdrop-filter: blur(12px); // Эффект матового стекла
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.8); 
+  border-radius: $radius;
+  box-shadow: 
+    0 10px 30px rgba(0,0,0,0.03), // Мягкая тень
+    inset 0 0 0 1px rgba(0,0,0,0.05); // Тонкий внутренний контур
+  transition: $transition;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+    border-color: $accent; // Красный акцент при наведении
+  }
+}
+
+// === LINKS & INTERACTION ===
+a {
+  color: $text-primary;
+  text-decoration: none;
+  border-bottom: 1.5px solid $accent; // Тонкая красная линия
+  padding-bottom: 2px;
+  transition: $transition;
+
+  &:hover {
+    background: $accent;
+    color: #fff;
+    border-color: $accent;
+  }
+}
+
+.reload {
+  color: $text-tertiary;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  
+  &:hover {
+    color: $accent-blue; // Синий акцент для разнообразия
+  }
+}
+
+// === SCROLLBAR ===
+::-webkit-scrollbar-track { background: $bg-base; }
+::-webkit-scrollbar-thumb {
+  background: $border-dark;
+  border: 4px solid $bg-base;
+  border-radius: 20px;
+}

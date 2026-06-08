@@ -1,0 +1,245 @@
+/* Neo-Brutalism Design Styles - Dance Studio */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    line-height: 1.6;
+    color: #1a1a1a;
+}
+
+/* Features Section */
+#features {
+    padding: 6rem 2rem;
+    background: #f5f5f5;
+    border-top: 3px solid #1a1a1a;
+    border-bottom: 3px solid #1a1a1a;
+}
+
+#features h2 {
+    text-align: left;
+    margin-bottom: 4rem;
+    color: #1a1a1a;
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: -2px;
+    text-transform: uppercase;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.feature-card {
+    padding: 2.5rem;
+    border: 2px solid #1a1a1a;
+    background: white;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.feature-card:hover {
+    border: 2px solid #1a1a1a;
+    transform: translate(-4px, -4px);
+    box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.1);
+}
+
+.feature-title {
+    display: block;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: -0.5px;
+}
+
+.feature-card p {
+    color: #333;
+    line-height: 1.8;
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+/* Why Us Section */
+#whyus {
+    padding: 6rem 2rem;
+    background: white;
+    border-bottom: 3px solid #1a1a1a;
+}
+
+#whyus h2 {
+    text-align: left;
+    margin-bottom: 4rem;
+    color: #1a1a1a;
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: -2px;
+    text-transform: uppercase;
+}
+
+.whyus-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.whyus-item {
+    padding: 2.5rem;
+    border: 2px solid #1a1a1a;
+    background: white;
+}
+
+.whyus-number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 1rem;
+    font-family: 'Courier New', monospace;
+    letter-spacing: -1px;
+}
+
+.whyus-item h3 {
+    color: #1a1a1a;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.whyus-item p {
+    color: #555;
+    line-height: 1.8;
+    font-size: 0.95rem;
+}
+
+/* Stats Section */
+#stats {
+    padding: 4rem 2rem;
+    background: #1a1a1a;
+    color: white;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.stat-item {
+    padding: 2rem;
+    border: 2px solid white;
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 0.75rem;
+    font-family: 'Courier New', monospace;
+    letter-spacing: -1px;
+}
+
+.stat-label {
+    color: #ccc;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* CTA Section */
+#cta {
+    padding: 6rem 2rem;
+    background: white;
+    color: #1a1a1a;
+    text-align: left;
+    border-top: 3px solid #1a1a1a;
+    border-bottom: 3px solid #1a1a1a;
+}
+
+#cta h2 {
+    color: #1a1a1a;
+    margin-bottom: 1.5rem;
+    font-size: 2.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: -2px;
+    max-width: 800px;
+}
+
+#cta p {
+    color: #555;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+    max-width: 600px;
+    line-height: 1.8;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: transparent;
+    color: #1a1a1a;
+    border: 3px solid #1a1a1a;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Courier New', monospace;
+}
+
+.cta-button:hover {
+    background: #1a1a1a;
+    color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #features,
+    #whyus,
+    #cta,
+    #stats {
+        padding: 3rem 1rem;
+    }
+
+    #features h2,
+    #whyus h2,
+    #cta h2 {
+        font-size: 2rem;
+    }
+
+    .features-grid,
+    .whyus-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    #cta p {
+        font-size: 0.95rem;
+    }
+}

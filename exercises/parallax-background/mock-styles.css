@@ -1,0 +1,189 @@
+
+/* Content Sections */
+.content-section {
+  background: transparent;
+  padding: 6rem 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.content-section h2 {
+  border-radius: 8px;
+  padding: 20px;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: #dacdc6;
+}
+
+.content-section p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #555;
+}
+
+/* About Section */
+.about {
+  text-align: center;
+}
+
+.about p {
+  max-width: 800px;
+  margin: 0 auto;
+  color: white;
+}
+
+/* Products Section */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.card {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.card-image {
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+}
+
+.card-image.red {
+  background-color: #dc143c;
+}
+
+.card-image.pink {
+  background-color: #ffb6d9;
+}
+
+.card-image.white {
+  background-color: #f0f0f0;
+}
+
+.card-image.mix {
+  background: linear-gradient(135deg, #dc143c 0%, #ffb6d9 50%, #f0f0f0 100%);
+}
+
+.card h3 {
+  padding: 1.5rem 1.5rem 0.5rem;
+  color: #8b0000;
+}
+
+.card p {
+  padding: 0 1.5rem 1rem;
+  font-size: 0.95rem;
+  color: #777;
+}
+
+.price {
+  display: block;
+  padding: 0 1.5rem 1.5rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #8b0000;
+}
+
+/* Features Section */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.feature {
+  text-align: center;
+  padding: 2rem;
+  background-color: antiquewhite;
+  border-radius: 8px;
+}
+
+.feature h3 {
+  font-size: 1.5rem;
+  color: #8b0000;
+  margin-bottom: 1rem;
+}
+
+.feature p {
+  color: #666;
+}
+
+/* CTA Section */
+.cta {
+  text-align: center;
+  background-color: rgba(249, 249, 249, 0.95);
+  position: relative;
+  z-index: 2;
+}
+
+.cta h2 {
+  margin-bottom: 1rem;
+}
+
+.cta p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: #666;
+}
+
+/* Buttons */
+.btn {
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  background-color: #8b0000;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #a50000;
+}
+
+.btn-large {
+  padding: 1rem 3rem;
+  font-size: 1.2rem;
+}
+
+/* Footer */
+.footer {
+  background-color: #000;
+  color: white;
+  padding: 3rem 2rem;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.footer p {
+  color: white;
+  margin: 0.5rem 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .content-section h2 {
+    font-size: 1.8rem;
+  }
+}
