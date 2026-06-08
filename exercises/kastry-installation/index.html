@@ -1,16 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRT Installation</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <div class="overlay">
-        click to start
+    
+    <div class="video-container">
+
+        <div class="overlay">
+            <span class="overlay__text">click to start</span>
+        </div>
+        <audio class="bg-audio" preload="auto"></audio>
+        <div class="audio-panel">
+            <span class="track-label">Now playing:</span>
+            <marquee class="track-marquee" behavior="scroll" direction="left"></marquee>
+            <div class="audio-buttons">
+                <button class="audio-button prev">Prev</button>
+                <button class="audio-button stop">Stop</button>
+                <button class="audio-button play-pause">Pause</button>
+                <button class="audio-button next">Next</button>
+            </div>
+        </div>
     </div>
-    <div class="video-container"></div>
     <script type="module" src="script.js"></script>
 </body>
+
 </html>
