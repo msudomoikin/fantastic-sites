@@ -6,7 +6,8 @@ let allChars = [];
 let tableCells = [];
 let lastIndex = 0;
 
-//массив порогов для срабатывания observer
+
+//массив значений для срабатывания intersection observer
 const thresholds = [...Array(101).keys()].map(num => num / 100)
 
 // создаем таблицу символов, 33-126 это ascii-коды отображаемых символов + 2 ячейки с неотображаемыми символами,
