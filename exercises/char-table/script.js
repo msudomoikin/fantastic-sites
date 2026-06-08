@@ -7,7 +7,7 @@ let tableCells = [];
 let lastIndex = 0;
 
 
-//create thresholds array
+//массив значений для срабатывания intersection observer
 const thresholds = [...Array(101).keys()].map(num => num / 100)
 console.log(thresholds);
 // create chars table
@@ -68,19 +68,18 @@ const observerCallback = (entries, observer) => {
         const end = Math.max(lastIndex, index);
         const isForward = index > lastIndex;
 
-        
-        for (let i = 0; i <= (end - start); i++) {
-            // Вычисляем индекс ячейки в зависимости от направления
-            // Если идем вперед, то это start + i, если назад — end - i
-            const cellIndex = isForward ? start + i : end - i;
 
-            // Добавляем нарастающую задержку (например, 20мс на каждую букву)
-            setTimeout(() => {
-                if (tableCells[cellIndex]) {
-                    highlightCell(tableCells[cellIndex]);
-                }
-            }, i * 100); // Каждая следующая ячейка в пачке подождет чуть дольше
-        }
+        // for (let i = 0; i <= (end - start); i++) {
+        // if (start + 1 === end) {
+        //     highlightCell(tableCells[end]);
+        //     continue
+        // }
+        // Вычисляем индекс ячейки в зависимости от направления
+        // Если идем вперед, то это start + i, если назад — end - i
+        const cellIndex = isForward ? start + i : end - i;
+        console.log(cellIndex);
+        highlightCell(tableCells[cellIndex]);
+        // }
 
         letterHeading.textContent = tableCells[index].textContent;
         lastIndex = index;
